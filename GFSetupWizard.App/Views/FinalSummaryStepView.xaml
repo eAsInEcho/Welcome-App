@@ -1,0 +1,142 @@
+<UserControl x:Class="GFSetupWizard.App.Views.FinalSummaryStepView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="20">
+                <!-- Header with congratulatory message -->
+                <Border Background="#4CAF50" 
+                        CornerRadius="8" 
+                        Padding="20" 
+                        Margin="0,0,0,30">
+                    <StackPanel>
+                        <TextBlock Text="Setup Complete" 
+                                   FontSize="32" 
+                                   FontWeight="Bold" 
+                                   Foreground="White" 
+                                   HorizontalAlignment="Center"/>
+                        <TextBlock Text="Congratulations! You have completed the GlobalFoundries laptop setup process." 
+                                   FontSize="18" 
+                                   Foreground="White" 
+                                   TextWrapping="Wrap" 
+                                   TextAlignment="Center" 
+                                   Margin="0,10,0,0"/>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Completed steps checklist -->
+                <Border Background="#F5F5F5" 
+                        BorderBrush="#DDDDDD" 
+                        BorderThickness="1" 
+                        CornerRadius="4" 
+                        Padding="20" 
+                        Margin="0,0,0,20">
+                    <StackPanel>
+                        <TextBlock Text="Completed Setup Steps:" 
+                                   FontSize="18" 
+                                   FontWeight="SemiBold" 
+                                   Margin="0,0,0,10"/>
+                        
+                        <StackPanel Margin="10,0,0,0">
+                            <CheckBox IsChecked="True" 
+                                      IsEnabled="False" 
+                                      Content="Welcome and Introduction" 
+                                      Margin="0,5,0,5"/>
+                            <CheckBox IsChecked="True" 
+                                      IsEnabled="False" 
+                                      Content="OneDrive Setup" 
+                                      Margin="0,5,0,5"/>
+                            <CheckBox IsChecked="True" 
+                                      IsEnabled="False" 
+                                      Content="Outlook Configuration" 
+                                      Margin="0,5,0,5"/>
+                            <CheckBox IsChecked="True" 
+                                      IsEnabled="False" 
+                                      Content="Microsoft Teams Setup" 
+                                      Margin="0,5,0,5"/>
+                            <CheckBox IsChecked="True" 
+                                      IsEnabled="False" 
+                                      Content="Microsoft Edge Configuration" 
+                                      Margin="0,5,0,5"/>
+                            <CheckBox IsChecked="True" 
+                                      IsEnabled="False" 
+                                      Content="VPN Access Setup" 
+                                      Margin="0,5,0,5"/>
+                            <CheckBox IsChecked="True" 
+                                      IsEnabled="False" 
+                                      Content="Additional Software Installation" 
+                                      Margin="0,5,0,5"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+                
+                <!-- VPN reminder -->
+                <Border Background="#FFF3E0" 
+                        BorderBrush="#FFB74D" 
+                        BorderThickness="1" 
+                        CornerRadius="4" 
+                        Padding="15" 
+                        Margin="0,0,0,20">
+                    <StackPanel>
+                        <TextBlock Text="Important Reminder" 
+                                   FontWeight="Bold" 
+                                   Foreground="#E65100" 
+                                   Margin="0,0,0,5"/>
+                        <TextBlock TextWrapping="Wrap" 
+                                   Foreground="#E65100">
+                            Please remember to connect to the GlobalFoundries VPN within 90 days to prevent your computer from locking. Regular VPN connections are required to maintain your system's security policies.
+                        </TextBlock>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Support information -->
+                <Border Background="#E3F2FD" 
+                        BorderBrush="#90CAF9" 
+                        BorderThickness="1" 
+                        CornerRadius="4" 
+                        Padding="15" 
+                        Margin="0,0,0,20">
+                    <StackPanel>
+                        <TextBlock Text="Need Help?" 
+                                   FontWeight="Bold" 
+                                   Foreground="#0D47A1" 
+                                   Margin="0,0,0,10"/>
+                        
+                        <TextBlock TextWrapping="Wrap" 
+                                   Margin="0,0,0,10">
+                            If you need assistance with any IT-related issues, please contact:
+                        </TextBlock>
+                        
+                        <StackPanel Margin="10,0,0,0">
+                            <TextBlock>
+                                <Run FontWeight="SemiBold">Global Service Desk:</Run>
+                                <Run Text="+1 518-305-4357"/>
+                            </TextBlock>
+                            
+                            <TextBlock Margin="0,5,0,0">
+                                <Run FontWeight="SemiBold">Service Portal:</Run>
+                                <Run Text="https://globalfoundries.service-now.com/sp"/>
+                            </TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Finish button -->
+                <Button x:Name="FinishButton" 
+                        Content="Finish" 
+                        Click="FinishButton_Click"
+                        Background="#4CAF50"
+                        Foreground="White"
+                        FontSize="16"
+                        FontWeight="SemiBold"
+                        Padding="30,15"
+                        HorizontalAlignment="Center"
+                        Margin="0,20,0,0"/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

@@ -1,0 +1,91 @@
+<UserControl x:Class="GFSetupWizard.App.Views.SoftwareSetupStepView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="20">
+                <TextBlock Text="Additional Software Installation" 
+                           FontSize="28" 
+                           FontWeight="Bold" 
+                           Margin="0,0,0,20"/>
+                
+                <TextBlock Text="Install additional software using Software Center and request any specialized applications" 
+                           FontSize="18" 
+                           FontWeight="SemiBold" 
+                           Foreground="#673AB7"
+                           Margin="0,0,0,20"/>
+                
+                <TextBlock TextWrapping="Wrap" Margin="0,0,0,20">
+                    Software Center provides a centralized location to install company-approved applications on your computer.
+                    It's the recommended way to add software to your GlobalFoundries workstation.
+                </TextBlock>
+                
+                <Button x:Name="LaunchSoftwareCenterButton" 
+                        Content="Launch Software Center" 
+                        Click="LaunchSoftwareCenterButton_Click"
+                        Background="#673AB7"
+                        Foreground="White"
+                        Padding="15,10"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        HorizontalAlignment="Left"
+                        Margin="0,0,0,30"/>
+                
+                <TextBlock Text="Software Center Features:" 
+                           FontWeight="SemiBold" 
+                           Margin="0,10,0,10"/>
+                
+                <StackPanel Margin="20,0,0,0">
+                    <TextBlock Text="1. Software Center contains company-approved applications" Margin="0,5,0,5"/>
+                    <TextBlock Text="2. Users can browse and install software directly" Margin="0,5,0,5"/>
+                    <TextBlock Text="3. Software Center also handles Windows Updates" Margin="0,5,0,5"/>
+                </StackPanel>
+                
+                <Border Background="#EDE7F6" 
+                        BorderBrush="#673AB7" 
+                        BorderThickness="1" 
+                        Padding="15" 
+                        Margin="0,20,0,20">
+                    <StackPanel>
+                        <TextBlock Text="Need specialized software?" 
+                                   FontWeight="SemiBold" 
+                                   Margin="0,0,0,10"/>
+                        
+                        <TextBlock TextWrapping="Wrap" Margin="0,0,0,10">
+                            If you need specialized software that's not available in Software Center, you can submit a request through the Service Portal.
+                        </TextBlock>
+                        
+                        <Button x:Name="OpenServicePortalButton" 
+                                Content="Open Service Portal" 
+                                Click="OpenServicePortalButton_Click"
+                                Background="#673AB7"
+                                Foreground="White"
+                                Padding="15,10"
+                                HorizontalAlignment="Left"/>
+                    </StackPanel>
+                </Border>
+                
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+                    <Button x:Name="CompleteButton" 
+                            Content="Yes, I've reviewed available software" 
+                            Click="CompleteButton_Click"
+                            Background="#4CAF50"
+                            Foreground="White"
+                            Padding="15,10"
+                            Margin="0,0,10,0"/>
+                    
+                    <Button x:Name="SkipButton" 
+                            Content="I'll do this later" 
+                            Click="SkipButton_Click"
+                            Background="#9E9E9E"
+                            Foreground="White"
+                            Padding="15,10"/>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

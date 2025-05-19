@@ -1,0 +1,72 @@
+<UserControl x:Class="GFSetupWizard.App.Views.TeamsSetupStepView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="20">
+                <TextBlock Text="Microsoft Teams Setup" 
+                           FontSize="28" 
+                           FontWeight="Bold" 
+                           Margin="0,0,0,20"/>
+                
+                <TextBlock Text="Configure Microsoft Teams for communication and collaboration" 
+                           FontSize="18" 
+                           FontWeight="SemiBold" 
+                           Foreground="#6264A7"
+                           Margin="0,0,0,20"/>
+                
+                <TextBlock TextWrapping="Wrap" Margin="0,0,0,20">
+                    Microsoft Teams is your primary tool for communication and collaboration at GlobalFoundries.
+                    Setting up Teams properly ensures you can connect with colleagues, participate in meetings, and collaborate on projects.
+                </TextBlock>
+                
+                <Button x:Name="LaunchTeamsButton" 
+                        Content="Launch Teams" 
+                        Click="LaunchTeamsButton_Click"
+                        Background="#6264A7"
+                        Foreground="White"
+                        Padding="15,10"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        HorizontalAlignment="Left"
+                        Margin="0,0,0,30"/>
+                
+                <TextBlock Text="Setup Guide:" 
+                           FontWeight="SemiBold" 
+                           Margin="0,10,0,10"/>
+                
+                <StackPanel Margin="20,0,0,0">
+                    <TextBlock Text="1. Enter your username@gfoundries.com if not already listed" Margin="0,5,0,5"/>
+                    <TextBlock Text="2. Click through the prompts with default options" Margin="0,5,0,5"/>
+                    <TextBlock Text="3. Uncheck the option to setup Teams Mobile" Margin="0,5,0,5"/>
+                </StackPanel>
+                
+                <TextBlock TextWrapping="Wrap" Margin="0,20,0,20">
+                    Once Teams is set up, you'll be able to chat with colleagues, join video meetings, 
+                    collaborate on documents, and stay connected with your team.
+                </TextBlock>
+                
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+                    <Button x:Name="CompleteButton" 
+                            Content="Yes, I've completed this step" 
+                            Click="CompleteButton_Click"
+                            Background="#4CAF50"
+                            Foreground="White"
+                            Padding="15,10"
+                            Margin="0,0,10,0"/>
+                    
+                    <Button x:Name="SkipButton" 
+                            Content="I'll do this later" 
+                            Click="SkipButton_Click"
+                            Background="#9E9E9E"
+                            Foreground="White"
+                            Padding="15,10"/>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

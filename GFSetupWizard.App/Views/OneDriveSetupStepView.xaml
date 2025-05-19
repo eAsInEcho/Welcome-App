@@ -1,0 +1,74 @@
+<UserControl x:Class="GFSetupWizard.App.Views.OneDriveSetupStepView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="20">
+                <TextBlock Text="OneDrive Setup" 
+                           FontSize="28" 
+                           FontWeight="Bold" 
+                           Margin="0,0,0,20"/>
+                
+                <TextBlock Text="Configure your OneDrive for secure file storage and synchronization" 
+                           FontSize="18" 
+                           FontWeight="SemiBold" 
+                           Foreground="#0077C8"
+                           Margin="0,0,0,20"/>
+                
+                <TextBlock TextWrapping="Wrap" Margin="0,0,0,20">
+                    Microsoft OneDrive allows you to securely store and access your files from any device. 
+                    Setting up OneDrive ensures your important work documents are backed up and synchronized.
+                </TextBlock>
+                
+                <Button x:Name="LaunchOneDriveButton" 
+                        Content="Launch OneDrive" 
+                        Click="LaunchOneDriveButton_Click"
+                        Background="#0077C8"
+                        Foreground="White"
+                        Padding="15,10"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        HorizontalAlignment="Left"
+                        Margin="0,0,0,30"/>
+                
+                <TextBlock Text="Setup Guide:" 
+                           FontWeight="SemiBold" 
+                           Margin="0,10,0,10"/>
+                
+                <StackPanel Margin="20,0,0,0">
+                    <TextBlock Text="1. Launch OneDrive using the button above" Margin="0,5,0,5"/>
+                    <TextBlock Text="2. Sign in with your GlobalFoundries email address" Margin="0,5,0,5"/>
+                    <TextBlock Text="3. Choose which folders to sync to your computer" Margin="0,5,0,5"/>
+                    <TextBlock Text="4. Wait for the initial synchronization to complete" Margin="0,5,0,5"/>
+                    <TextBlock Text="5. Verify that your OneDrive folder is accessible in File Explorer" Margin="0,5,0,5"/>
+                </StackPanel>
+                
+                <TextBlock TextWrapping="Wrap" Margin="0,20,0,20">
+                    Once OneDrive is set up, your documents will automatically sync between your computer and the cloud.
+                    This ensures your files are backed up and accessible from any device.
+                </TextBlock>
+                
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+                    <Button x:Name="CompleteButton" 
+                            Content="Yes, I've completed this step" 
+                            Click="CompleteButton_Click"
+                            Background="#4CAF50"
+                            Foreground="White"
+                            Padding="15,10"
+                            Margin="0,0,10,0"/>
+                    
+                    <Button x:Name="SkipButton" 
+                            Content="I'll do this later" 
+                            Click="SkipButton_Click"
+                            Background="#9E9E9E"
+                            Foreground="White"
+                            Padding="15,10"/>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

@@ -1,0 +1,56 @@
+using System.Windows;
+using System.Windows.Controls;
+using GFSetupWizard.SystemIntegration;
+
+namespace GFSetupWizard.App.Views
+{
+    public partial class EdgeSetupStepView : UserControl
+    {
+        // Event to notify parent containers when the step is completed or skipped
+        public event RoutedEventHandler StepCompleted;
+        public event RoutedEventHandler StepSkipped;
+
+        public EdgeSetupStepView()
+        {
+            InitializeComponent();
+        }
+
+        private void LaunchEdgeButton_Click(object sender, RoutedEventArgs e)
+        {
+            bool success = SystemApplicationLauncher.LaunchEdge();
+            
+            if (!success)
+            {
+                MessageBox.Show(
+                    "Unable to launch Edge automatically. Please open it manually from the Start menu.",
+                    "Launch Failed",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning
+                );
+            }
+        }
+
+        private void CompleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Raise the StepCompleted event to notify parent containers
+            StepCompleted?.Invoke(this, new RoutedEventArgs());
+        }
+
+        private void SkipButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Confirm that the user wants to skip this step
+            MessageBoxResult result = MessageBox.Show(
+                "Are you sure you want to skip Edge setup? You can always set it up later.",
+                "Skip Edge Setup",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question
+            );
+
+            if (result == MessageBoxResult.Yes)
+            {
+                // Raise the StepSkipped event to notify parent containers
+                StepSkipped?.Invoke(this, new RoutedEventArgs());
+            }
+        }
+    }
+}
