@@ -8,6 +8,7 @@ namespace GFSetupWizard.App
         {
             base.OnStartup(e);
             
+            // Create and show the main window
             var mainWindow = new MainWindow();
             mainWindow.Show();
         }

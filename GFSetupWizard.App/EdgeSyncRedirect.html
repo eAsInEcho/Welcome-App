@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edge Sync Settings Redirect</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            flex-direction: column;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 600px;
+        }
+        h1 {
+            color: #0078D7;
+            margin-top: 0;
+        }
+        p {
+            margin: 20px 0;
+            line-height: 1.5;
+        }
+        .button {
+            display: inline-block;
+            background-color: #0078D7;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            margin: 10px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #005a9e;
+        }
+        .manual-steps {
+            margin-top: 30px;
+            text-align: left;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 4px;
+        }
+        .manual-steps h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        .manual-steps ol {
+            padding-left: 20px;
+        }
+        .manual-steps li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Edge Sync Settings Redirect</h1>
+        <p>This page will attempt to redirect you to the Microsoft Edge sync settings page. If automatic redirection doesn't work, please use the button below or follow the manual steps.</p>
+        
+        <a href="edge://settings/profiles/sync" class="button" id="redirectButton">Go to Edge Sync Settings</a>
+        
+        <div class="manual-steps">
+            <h2>Manual Steps:</h2>
+            <ol>
+                <li>Open Microsoft Edge</li>
+                <li>Click on your profile icon in the top-right corner</li>
+                <li>Select "Manage profile settings" or "Sync"</li>
+                <li>If prompted, sign in with your work account</li>
+                <li>Ensure all sync options are enabled</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        // Try to redirect to Edge sync settings
+        window.onload = function() {
+            try {
+                // Try to redirect using the edge:// protocol
+                window.location.href = 'edge://settings/profiles/sync';
+                
+                // Set a timeout to check if redirection worked
+                setTimeout(function() {
+                    // If we're still on this page, the redirection didn't work
+                    document.getElementById('redirectButton').addEventListener('click', function(e) {
+                        e.preventDefault();
+                        window.location.href = 'edge://settings/profiles/sync';
+                    });
+                }, 1000);
+            } catch (e) {
+                console.error('Error redirecting to Edge sync settings:', e);
+            }
+        };
+    </script>
+</body>
+</html>

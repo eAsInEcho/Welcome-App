@@ -19,52 +19,114 @@
                            Foreground="#0078D7"
                            Margin="0,0,0,20"/>
                 
+                <!-- Status Panel -->
+                <Border x:Name="StatusPanel" 
+                        BorderBrush="#E0E0E0" 
+                        BorderThickness="1" 
+                        Padding="15" 
+                        Margin="0,0,0,20" 
+                        Background="#F5F5F5"
+                        CornerRadius="4">
+                    <StackPanel>
+                        <TextBlock x:Name="StatusMessage" 
+                                   Text="Checking Edge configuration..." 
+                                   FontWeight="SemiBold" 
+                                   TextWrapping="Wrap"/>
+                        
+                        <!-- Profile Details Panel (Hidden by default) -->
+                        <Border x:Name="ProfileDetailsPanel" 
+                                BorderBrush="#E0E0E0" 
+                                BorderThickness="1" 
+                                Padding="10" 
+                                Margin="0,10,0,0" 
+                                Background="White"
+                                CornerRadius="4"
+                                Visibility="Collapsed">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                
+                                <TextBlock Text="Email:" 
+                                           FontWeight="SemiBold" 
+                                           Grid.Row="0" 
+                                           Grid.Column="0" 
+                                           Margin="0,0,10,5"/>
+                                <TextBlock x:Name="ProfileEmail" 
+                                           Text="" 
+                                           Grid.Row="0" 
+                                           Grid.Column="1" 
+                                           Margin="0,0,0,5"/>
+                                
+                                <TextBlock Text="Profile:" 
+                                           FontWeight="SemiBold" 
+                                           Grid.Row="1" 
+                                           Grid.Column="0" 
+                                           Margin="0,0,10,5"/>
+                                <TextBlock x:Name="ProfileName" 
+                                           Text="" 
+                                           Grid.Row="1" 
+                                           Grid.Column="1" 
+                                           Margin="0,0,0,5"/>
+                                
+                                <TextBlock Text="Sync:" 
+                                           FontWeight="SemiBold" 
+                                           Grid.Row="2" 
+                                           Grid.Column="0" 
+                                           Margin="0,0,10,0"/>
+                                <TextBlock x:Name="SyncStatus" 
+                                           Text="" 
+                                           Grid.Row="2" 
+                                           Grid.Column="1" 
+                                           Margin="0,0,0,0"/>
+                            </Grid>
+                        </Border>
+                    </StackPanel>
+                </Border>
+                
                 <TextBlock TextWrapping="Wrap" Margin="0,0,0,20">
                     Microsoft Edge is your primary web browser at GlobalFoundries.
                     Setting up Edge properly ensures your bookmarks, passwords, and preferences are synced across all your devices.
                 </TextBlock>
                 
-                <Button x:Name="LaunchEdgeButton" 
-                        Content="Launch Edge" 
-                        Click="LaunchEdgeButton_Click"
-                        Background="#0078D7"
-                        Foreground="White"
-                        Padding="15,10"
-                        FontSize="14"
-                        FontWeight="SemiBold"
-                        HorizontalAlignment="Left"
-                        Margin="0,0,0,30"/>
-                
-                <TextBlock Text="Setup Guide:" 
-                           FontWeight="SemiBold" 
-                           Margin="0,10,0,10"/>
-                
-                <StackPanel Margin="20,0,0,0">
-                    <TextBlock Text="1. Click on your profile icon in the upper-left corner" Margin="0,5,0,5"/>
-                    <TextBlock Text="2. Confirm syncing is ON" Margin="0,5,0,5"/>
-                </StackPanel>
-                
-                <TextBlock TextWrapping="Wrap" Margin="0,20,0,20">
-                    <Run FontWeight="SemiBold">Note:</Run> Syncing maintains bookmarks and preferences across your devices securely.
-                    This ensures you have a consistent browsing experience on all your work devices.
-                </TextBlock>
-                
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
-                    <Button x:Name="CompleteButton" 
-                            Content="Yes, I've completed this step" 
-                            Click="CompleteButton_Click"
+                <!-- Button Stack Panel -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,30">
+                    <Button x:Name="LaunchEdgeButton" 
+                            Content="Launch Edge with Sync Settings" 
+                            Click="LaunchEdgeButton_Click"
+                            Background="#0078D7"
+                            Foreground="White"
+                            Padding="15,10"
+                            FontSize="14"
+                            FontWeight="SemiBold"
+                            HorizontalAlignment="Left"
+                            Margin="0,0,10,0"/>
+                    
+                    <Button x:Name="CheckStatusButton" 
+                            Content="Copy Sync Settings URL" 
+                            Click="CheckStatusButton_Click"
                             Background="#4CAF50"
                             Foreground="White"
                             Padding="15,10"
-                            Margin="0,0,10,0"/>
-                    
-                    <Button x:Name="SkipButton" 
-                            Content="I'll do this later" 
-                            Click="SkipButton_Click"
-                            Background="#9E9E9E"
-                            Foreground="White"
-                            Padding="15,10"/>
+                            FontSize="14"
+                            FontWeight="SemiBold"
+                            HorizontalAlignment="Left"/>
                 </StackPanel>
+                
+                <TextBlock TextWrapping="Wrap" Margin="0,0,0,20" FontStyle="Italic">
+                    Note: The "Launch Edge with Sync Settings" button will open Edge and automatically navigate to the sync settings page.
+                    If that doesn't work, use the "Copy Sync Settings URL" button to copy the URL, then paste it into Edge's address bar.
+                </TextBlock>
+                
+                <TextBlock TextWrapping="Wrap" Margin="0,20,0,20">
+                    When Edge opens to the sync settings page, make sure you're signed in with your GlobalFoundries work account and that sync is enabled. This ensures your bookmarks, passwords, and preferences are synced across all your work devices.
+                </TextBlock>
             </StackPanel>
         </ScrollViewer>
     </Grid>

@@ -21,7 +21,7 @@ namespace GFSetupWizard.App
 
         public MainWindow()
         {
-            // Initialize UI components manually since InitializeComponent is not available
+            // Initialize UI components manually
             InitializeUIComponents();
             
             // Get the shared completion manager

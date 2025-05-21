@@ -51,23 +51,6 @@
                     Once Outlook is set up, you'll have access to your company email, calendar, and contacts.
                     You can schedule meetings, manage your appointments, and communicate with your colleagues.
                 </TextBlock>
-                
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
-                    <Button x:Name="CompleteButton" 
-                            Content="Yes, I've completed this step" 
-                            Click="CompleteButton_Click"
-                            Background="#4CAF50"
-                            Foreground="White"
-                            Padding="15,10"
-                            Margin="0,0,10,0"/>
-                    
-                    <Button x:Name="SkipButton" 
-                            Content="I'll do this later" 
-                            Click="SkipButton_Click"
-                            Background="#9E9E9E"
-                            Foreground="White"
-                            Padding="15,10"/>
-                </StackPanel>
             </StackPanel>
         </ScrollViewer>
     </Grid>

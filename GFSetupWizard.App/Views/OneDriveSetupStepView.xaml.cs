@@ -6,18 +6,21 @@ namespace GFSetupWizard.App.Views
 {
     public partial class OneDriveSetupStepView : UserControl
     {
-        // Event to notify parent containers when the step is completed or skipped
+        // Events needed for step navigation
         public event RoutedEventHandler StepCompleted;
         public event RoutedEventHandler StepSkipped;
-
+        
         public OneDriveSetupStepView()
         {
             InitializeComponent();
+            
+            // Auto-mark step as complete when the view is loaded
+            Loaded += (s, e) => StepCompleted?.Invoke(this, new RoutedEventArgs());
         }
 
         private void LaunchOneDriveButton_Click(object sender, RoutedEventArgs e)
         {
-            bool success = SystemApplicationLauncher.LaunchOneDrive();
+            bool success = SystemApplicationLauncher.LaunchOneDriveWithFeedback();
             
             if (!success)
             {
@@ -27,29 +30,6 @@ namespace GFSetupWizard.App.Views
                     MessageBoxButton.OK,
                     MessageBoxImage.Warning
                 );
-            }
-        }
-
-        private void CompleteButton_Click(object sender, RoutedEventArgs e)
-        {
-            // Raise the StepCompleted event to notify parent containers
-            StepCompleted?.Invoke(this, new RoutedEventArgs());
-        }
-
-        private void SkipButton_Click(object sender, RoutedEventArgs e)
-        {
-            // Confirm that the user wants to skip this step
-            MessageBoxResult result = MessageBox.Show(
-                "Are you sure you want to skip OneDrive setup? You can always set it up later.",
-                "Skip OneDrive Setup",
-                MessageBoxButton.YesNo,
-                MessageBoxImage.Question
-            );
-
-            if (result == MessageBoxResult.Yes)
-            {
-                // Raise the StepSkipped event to notify parent containers
-                StepSkipped?.Invoke(this, new RoutedEventArgs());
             }
         }
     }

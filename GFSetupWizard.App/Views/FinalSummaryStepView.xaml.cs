@@ -1,5 +1,6 @@
 using System.Windows;
 using System.Windows.Controls;
+using GFSetupWizard.SystemIntegration;
 
 namespace GFSetupWizard.App.Views
 {
@@ -8,6 +9,21 @@ namespace GFSetupWizard.App.Views
         public FinalSummaryStepView()
         {
             InitializeComponent();
+        }
+
+        private void OpenServicePortalButton_Click(object sender, RoutedEventArgs e)
+        {
+            bool success = SystemApplicationLauncher.OpenServicePortal();
+            
+            if (!success)
+            {
+                MessageBox.Show(
+                    "Unable to open the Service Portal automatically. Please navigate to https://globalfoundries.service-now.com/esc manually.",
+                    "Launch Failed",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning
+                );
+            }
         }
 
         private void FinishButton_Click(object sender, RoutedEventArgs e)

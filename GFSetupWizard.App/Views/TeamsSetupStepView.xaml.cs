@@ -6,13 +6,16 @@ namespace GFSetupWizard.App.Views
 {
     public partial class TeamsSetupStepView : UserControl
     {
-        // Event to notify parent containers when the step is completed or skipped
+        // Events needed for step navigation
         public event RoutedEventHandler StepCompleted;
         public event RoutedEventHandler StepSkipped;
-
+        
         public TeamsSetupStepView()
         {
             InitializeComponent();
+            
+            // Auto-mark step as complete when the view is loaded
+            Loaded += (s, e) => StepCompleted?.Invoke(this, new RoutedEventArgs());
         }
 
         private void LaunchTeamsButton_Click(object sender, RoutedEventArgs e)
@@ -27,29 +30,6 @@ namespace GFSetupWizard.App.Views
                     MessageBoxButton.OK,
                     MessageBoxImage.Warning
                 );
-            }
-        }
-
-        private void CompleteButton_Click(object sender, RoutedEventArgs e)
-        {
-            // Raise the StepCompleted event to notify parent containers
-            StepCompleted?.Invoke(this, new RoutedEventArgs());
-        }
-
-        private void SkipButton_Click(object sender, RoutedEventArgs e)
-        {
-            // Confirm that the user wants to skip this step
-            MessageBoxResult result = MessageBox.Show(
-                "Are you sure you want to skip Teams setup? You can always set it up later.",
-                "Skip Teams Setup",
-                MessageBoxButton.YesNo,
-                MessageBoxImage.Question
-            );
-
-            if (result == MessageBoxResult.Yes)
-            {
-                // Raise the StepSkipped event to notify parent containers
-                StepSkipped?.Invoke(this, new RoutedEventArgs());
             }
         }
     }

@@ -37,7 +37,7 @@
                 </TextBlock>
                 
                 <Button x:Name="OpenServicePortalButton" 
-                        Content="Open Service Portal" 
+                        Content="Open RSA token request for VPN" 
                         Click="OpenServicePortalButton_Click"
                         Background="#E74C3C"
                         Foreground="White"
@@ -61,23 +61,6 @@
                     If you need assistance, contact the Global Service Desk at:
                     <Run FontWeight="SemiBold">+1 518-305-4357</Run>
                 </TextBlock>
-                
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
-                    <Button x:Name="CompleteButton" 
-                            Content="Yes, I've submitted my request" 
-                            Click="CompleteButton_Click"
-                            Background="#4CAF50"
-                            Foreground="White"
-                            Padding="15,10"
-                            Margin="0,0,10,0"/>
-                    
-                    <Button x:Name="SkipButton" 
-                            Content="I'll do this later" 
-                            Click="SkipButton_Click"
-                            Background="#9E9E9E"
-                            Foreground="White"
-                            Padding="15,10"/>
-                </StackPanel>
             </StackPanel>
         </ScrollViewer>
     </Grid>
