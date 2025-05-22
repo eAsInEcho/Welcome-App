@@ -1,3 +1,0 @@
-@echo off
-echo Launching Microsoft Edge with sync settings...
-start msedge edge://settings/profiles/sync
