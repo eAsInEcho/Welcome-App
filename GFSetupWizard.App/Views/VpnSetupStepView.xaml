@@ -6,62 +6,127 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="White"/>
+        </Grid.Background>
+        
+        <!-- World Map image in background -->
+        <Image Source="/GFSetupWizard.App;component/Resources/Images/New _GF_icons_Globe_purp.png" 
+               Opacity="0.05" 
+               HorizontalAlignment="Right" 
+               VerticalAlignment="Top" 
+               Width="300" 
+               Height="300" 
+               Margin="0,-50,-50,0"/>
+        
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <StackPanel Margin="20">
-                <TextBlock Text="SecurID RSA Token for VPN" 
-                           FontSize="28" 
-                           FontWeight="Bold" 
-                           Margin="0,0,0,20"/>
+            <Grid Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
                 
-                <TextBlock Text="Request your SecurID RSA token for secure VPN access to company resources" 
-                           FontSize="18" 
-                           FontWeight="SemiBold" 
-                           Foreground="#E74C3C"
-                           Margin="0,0,0,20"/>
-                
-                <Border Background="#FFEBEE" 
-                        BorderBrush="#E74C3C" 
-                        BorderThickness="1" 
-                        Padding="15" 
-                        Margin="0,0,0,20">
-                    <TextBlock TextWrapping="Wrap" 
-                               Foreground="#E74C3C" 
-                               FontWeight="SemiBold">
-                        IMPORTANT: You MUST connect to the GF network via VPN or physically in the office at least once every 90 days or your computer will LOCK!
-                    </TextBlock>
-                </Border>
-                
-                <TextBlock TextWrapping="Wrap" Margin="0,0,0,20">
-                    A SecurID RSA token is required to establish a secure VPN connection to the GlobalFoundries network.
-                    This allows you to access internal resources when working remotely.
-                </TextBlock>
-                
-                <Button x:Name="OpenServicePortalButton" 
-                        Content="Open RSA token request for VPN" 
-                        Click="OpenServicePortalButton_Click"
-                        Background="#E74C3C"
-                        Foreground="White"
-                        Padding="15,10"
-                        FontSize="14"
-                        FontWeight="SemiBold"
-                        HorizontalAlignment="Left"
-                        Margin="0,0,0,30"/>
-                
-                <TextBlock Text="Request Steps:" 
-                           FontWeight="SemiBold" 
-                           Margin="0,10,0,10"/>
-                
-                <StackPanel Margin="20,0,0,0">
-                    <TextBlock Text="1. Choose 'New RSA Token' as request type" Margin="0,5,0,5"/>
-                    <TextBlock Text="2. Select your preferred operating system" Margin="0,5,0,5"/>
-                    <TextBlock Text="3. Look for email instructions within 48 hours" Margin="0,5,0,5"/>
+                <!-- Header with colon graphic element -->
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,20">
+                    <TextBlock Text="VPN" 
+                               Style="{StaticResource HeaderTextStyle}"
+                               Margin="0"/>
+                    <Grid Margin="10,0,0,0" VerticalAlignment="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Border Width="12" Height="12" Background="{StaticResource VpnBrush}" Grid.Row="0" Margin="0,0,0,2"/>
+                        <Border Width="12" Height="12" Background="{StaticResource VpnBrush}" Grid.Row="1" Margin="0,2,0,0"/>
+                    </Grid>
+                    <TextBlock Text="Access" 
+                               Style="{StaticResource HeaderTextStyle}"
+                               Margin="10,0,0,0"/>
                 </StackPanel>
                 
-                <TextBlock TextWrapping="Wrap" Margin="0,20,0,20">
-                    If you need assistance, contact the Global Service Desk at:
-                    <Run FontWeight="SemiBold">+1 518-305-4357</Run>
-                </TextBlock>
-            </StackPanel>
+                <StackPanel Grid.Row="1">
+                    <TextBlock Text="Request your SecurID RSA token for secure VPN access to company resources" 
+                               Style="{StaticResource SubHeaderTextStyle}"
+                               Foreground="{StaticResource VpnBrush}"/>
+                
+                    <Border Background="#FFEBEE" 
+                            BorderBrush="{StaticResource VpnBrush}" 
+                            BorderThickness="1" 
+                            Padding="15" 
+                            Margin="0,0,0,20"
+                            CornerRadius="4">
+                        <TextBlock TextWrapping="Wrap" 
+                                   Foreground="{StaticResource VpnBrush}" 
+                                   FontWeight="SemiBold">
+                            IMPORTANT: You MUST connect to the GF network via VPN or physically in the office at least once every 90 days or your computer will LOCK!
+                            This will require IT Service Desk assistance and may call for physically going into an office or replacing the computer.
+                        </TextBlock>
+                    </Border>
+                    
+                    <Border Background="{StaticResource GFLightGreyBrush}" 
+                            Padding="15" 
+                            Margin="0,0,0,20"
+                            CornerRadius="4">
+                        <TextBlock Style="{StaticResource BodyTextStyle}" Margin="0">
+                            This step is REQUIRED if you will be working remote at any time.
+                            You can skip this step if you will always be in office.
+                            RSA tokens are used to log in with VPN on your computer which allows you to access internal resources when working remotely.
+                        </TextBlock>
+                    </Border>
+                
+                    <Button x:Name="OpenServicePortalButton" 
+                            Content="Open RSA token request for VPN" 
+                            Click="OpenServicePortalButton_Click"
+                            Background="{StaticResource VpnBrush}"
+                            Foreground="White"
+                            Padding="15,10"
+                            FontSize="14"
+                            FontWeight="SemiBold"
+                            HorizontalAlignment="Left"
+                            Margin="0,0,0,30"/>
+                    
+                    <TextBlock Text="Request Steps:" 
+                               FontWeight="SemiBold" 
+                               Foreground="{StaticResource VpnBrush}"
+                               Margin="0,10,0,10"/>
+                    
+                    <!-- Steps with colon graphic elements -->
+                    <Grid Margin="0,10,0,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        
+                        <!-- Step 1 -->
+                        <Border Grid.Row="0" Grid.Column="0" Width="6" Height="20" Background="{StaticResource VpnBrush}" Margin="0,5,0,5"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="Choose 'New RSA Token' as request type" Margin="10,5,0,5"/>
+                        
+                        <!-- Step 2 -->
+                        <Border Grid.Row="1" Grid.Column="0" Width="6" Height="20" Background="{StaticResource VpnBrush}" Margin="0,5,0,5"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="Select your preferred operating system" Margin="10,5,0,5"/>
+                        
+                        <!-- Step 3 -->
+                        <Border Grid.Row="2" Grid.Column="0" Width="6" Height="20" Background="{StaticResource VpnBrush}" Margin="0,5,0,5"/>
+                        <TextBlock Grid.Row="2" Grid.Column="1" Text="Look for email instructions within 48 hours" Margin="10,5,0,5"/>
+                    </Grid>
+                    
+                    <Border Background="{StaticResource GFYellowBrush}" 
+                            BorderThickness="0" 
+                            Padding="15" 
+                            Margin="0,10,0,20"
+                            CornerRadius="4">
+                        <TextBlock TextWrapping="Wrap" Margin="0">
+                            If you need assistance, contact the Global Service Desk at:
+                            <Run FontWeight="SemiBold">+1 518-305-4357</Run>
+                        </TextBlock>
+                    </Border>
+                </StackPanel>
+            </Grid>
         </ScrollViewer>
     </Grid>
 </UserControl>

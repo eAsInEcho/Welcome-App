@@ -6,144 +6,169 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="White"/>
+        </Grid.Background>
+        
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <StackPanel Margin="20">
+            <Grid Margin="20">
                 <!-- Header with congratulatory message -->
-                <Border Background="#4CAF50" 
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                
+                <Border Grid.Row="0" Background="{StaticResource GFOrangeBrush}" 
                         CornerRadius="8" 
                         Padding="20" 
                         Margin="0,0,0,30">
-                    <StackPanel>
-                        <TextBlock Text="Setup Complete" 
-                                   FontSize="32" 
-                                   FontWeight="Bold" 
-                                   Foreground="White" 
-                                   HorizontalAlignment="Center"/>
-                        <TextBlock Text="Congratulations! You have completed the GlobalFoundries laptop setup process." 
-                                   FontSize="18" 
-                                   Foreground="White" 
-                                   TextWrapping="Wrap" 
-                                   TextAlignment="Center" 
-                                   Margin="0,10,0,0"/>
-                    </StackPanel>
-                </Border>
-                
-                <!-- Completed steps checklist -->
-                <Border Background="#F5F5F5" 
-                        BorderBrush="#DDDDDD" 
-                        BorderThickness="1" 
-                        CornerRadius="4" 
-                        Padding="20" 
-                        Margin="0,0,0,20">
-                    <StackPanel>
-                        <TextBlock Text="Completed Setup Steps:" 
-                                   FontSize="18" 
-                                   FontWeight="SemiBold" 
-                                   Margin="0,0,0,10"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
                         
-                        <StackPanel Margin="10,0,0,0">
-                            <CheckBox IsChecked="True" 
-                                      IsEnabled="False" 
-                                      Content="Welcome and Introduction" 
-                                      Margin="0,5,0,5"/>
-                            <CheckBox IsChecked="True" 
-                                      IsEnabled="False" 
-                                      Content="OneDrive Setup" 
-                                      Margin="0,5,0,5"/>
-                            <CheckBox IsChecked="True" 
-                                      IsEnabled="False" 
-                                      Content="Outlook Configuration" 
-                                      Margin="0,5,0,5"/>
-                            <CheckBox IsChecked="True" 
-                                      IsEnabled="False" 
-                                      Content="Microsoft Teams Setup" 
-                                      Margin="0,5,0,5"/>
-                            <CheckBox IsChecked="True" 
-                                      IsEnabled="False" 
-                                      Content="Microsoft Edge Configuration" 
-                                      Margin="0,5,0,5"/>
-                            <CheckBox IsChecked="True" 
-                                      IsEnabled="False" 
-                                      Content="VPN Access Setup" 
-                                      Margin="0,5,0,5"/>
-                            <CheckBox IsChecked="True" 
-                                      IsEnabled="False" 
-                                      Content="Additional Software Installation" 
-                                      Margin="0,5,0,5"/>
-                        </StackPanel>
-                    </StackPanel>
-                </Border>
-                
-                <!-- VPN reminder -->
-                <Border Background="#FFF3E0" 
-                        BorderBrush="#FFB74D" 
-                        BorderThickness="1" 
-                        CornerRadius="4" 
-                        Padding="15" 
-                        Margin="0,0,0,20">
-                    <StackPanel>
-                        <TextBlock Text="Important Reminder" 
-                                   FontWeight="Bold" 
-                                   Foreground="#E65100" 
-                                   Margin="0,0,0,5"/>
-                        <TextBlock TextWrapping="Wrap" 
-                                   Foreground="#E65100">
-                            Please remember to connect to the GlobalFoundries VPN within 90 days to prevent your computer from locking. Regular VPN connections are required to maintain your system's security policies.
-                        </TextBlock>
-                    </StackPanel>
-                </Border>
-                
-                <!-- Support information -->
-                <Border Background="#E3F2FD" 
-                        BorderBrush="#90CAF9" 
-                        BorderThickness="1" 
-                        CornerRadius="4" 
-                        Padding="15" 
-                        Margin="0,0,0,20">
-                    <StackPanel>
-                        <TextBlock Text="Need Help?" 
-                                   FontWeight="Bold" 
-                                   Foreground="#0D47A1" 
-                                   Margin="0,0,0,10"/>
-                        
-                        <TextBlock TextWrapping="Wrap" 
-                                   Margin="0,0,0,10">
-                            If you need assistance with any IT-related issues, please contact:
-                        </TextBlock>
-                        
-                        <StackPanel Margin="10,0,0,0">
-                            <TextBlock Margin="0,0,0,5">
-                                <Run FontWeight="SemiBold">Service Portal:</Run>
-                                <Run Text="https://globalfoundries.service-now.com/esc"/>
-                            </TextBlock>
-                            <Button x:Name="OpenServicePortalButton" 
-                                    Content="Service Portal" 
-                                    Click="OpenServicePortalButton_Click"
-                                    Background="#2196F3"
-                                    Foreground="White"
-                                    Padding="10,5"
-                                    HorizontalAlignment="Left"/>
+                        <StackPanel Grid.Column="0">
+                            <!-- Header with colon graphic element -->
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="Setup" 
+                                           FontSize="32" 
+                                           FontWeight="Bold" 
+                                           Foreground="White"/>
+                                <Grid Margin="10,0,0,0" VerticalAlignment="Center">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Border Width="14" Height="14" Background="White" Grid.Row="0" Margin="0,0,0,2"/>
+                                    <Border Width="14" Height="14" Background="White" Grid.Row="1" Margin="0,2,0,0"/>
+                                </Grid>
+                                <TextBlock Text="Complete" 
+                                           FontSize="32" 
+                                           FontWeight="Bold" 
+                                           Foreground="White" 
+                                           Margin="10,0,0,0"/>
+                            </StackPanel>
                             
-                            <TextBlock Margin="0,10,0,0">
-                                <Run FontWeight="SemiBold">Global Service Desk:</Run>
-                                <Run Text="+1 518-305-4357"/>
-                            </TextBlock>
+                            <TextBlock Text="Congratulations! You have completed the GF laptop setup process." 
+                                       FontSize="18" 
+                                       Foreground="White" 
+                                       TextWrapping="Wrap" 
+                                       TextAlignment="Center" 
+                                       Margin="0,10,0,0"/>
                         </StackPanel>
-                    </StackPanel>
+                        
+                        <!-- Globe image as celebratory element -->
+                        <Image Grid.Column="1" 
+                               Source="/GFSetupWizard.App;component/Resources/Images/New _GF_icons_Globe_ylw.png" 
+                               Width="80" 
+                               Height="80" 
+                               Margin="10,0,0,0"/>
+                    </Grid>
                 </Border>
                 
-                <!-- Finish button -->
-                <Button x:Name="FinishButton" 
-                        Content="Finish" 
-                        Click="FinishButton_Click"
-                        Background="#4CAF50"
-                        Foreground="White"
-                        FontSize="16"
-                        FontWeight="SemiBold"
-                        Padding="30,15"
-                        HorizontalAlignment="Center"
-                        Margin="0,20,0,0"/>
-            </StackPanel>
+                <!-- Main content -->
+                <StackPanel Grid.Row="1">
+                    
+                    <!-- VPN reminder -->
+                    <Border Background="{StaticResource GFYellowBrush}" 
+                            BorderThickness="0" 
+                            CornerRadius="4" 
+                            Padding="15" 
+                            Margin="0,0,0,20">
+                        <StackPanel>
+                            <TextBlock Text="Important Reminder" 
+                                       FontWeight="Bold" 
+                                       Margin="0,0,0,5"/>
+                            <TextBlock TextWrapping="Wrap">
+                                REMEMBER: You MUST connect the computer to the GF network via VPN or physically in the office at least once every 90 days or else your computer will LOCK!
+                                This will require Global Service Desk assistance and may call for physically going into an office or replacing the computer.
+                            </TextBlock>
+                        </StackPanel>
+                    </Border>
+                    
+                    <!-- Important Links section -->
+                    <Border Background="{StaticResource GFLightGreyBrush}" 
+                            BorderThickness="0" 
+                            CornerRadius="4" 
+                            Padding="15" 
+                            Margin="0,0,0,20">
+                        <StackPanel>
+                            <TextBlock Text="Important Links!" 
+                                       FontWeight="Bold" 
+                                       Foreground="{StaticResource GFOrangeBrush}" 
+                                       Margin="0,0,0,10"/>
+                            
+                            <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+                                <Button x:Name="OpenServicePortalButton" 
+                                        Content="Submit Tickets and Get Help" 
+                                        Click="OpenServicePortalButton_Click"
+                                        Background="{StaticResource GFPurpleBrush}"
+                                        Foreground="White"
+                                        Padding="10,5"
+                                        Margin="0,0,10,0"
+                                        HorizontalAlignment="Left"/>
+                                
+                                <Button x:Name="OpenRsaRequestButton" 
+                                        Content="RSA Request" 
+                                        Click="OpenRsaRequestButton_Click"
+                                        Background="{StaticResource GFPurpleBrush}"
+                                        Foreground="White"
+                                        Padding="10,5"
+                                        Margin="0,0,10,0"
+                                        HorizontalAlignment="Left"/>
+                                
+                                <Button x:Name="OpenSoftwareRequestButton" 
+                                        Content="Request Software" 
+                                        Click="OpenSoftwareRequestButton_Click"
+                                        Background="{StaticResource GFPurpleBrush}"
+                                        Foreground="White"
+                                        Padding="10,5"
+                                        HorizontalAlignment="Left"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    
+                    <!-- Support information -->
+                    <Border Background="{StaticResource GFLightGreyBrush}" 
+                            BorderThickness="0" 
+                            CornerRadius="4" 
+                            Padding="15" 
+                            Margin="0,0,0,20">
+                        <StackPanel>
+                            <TextBlock Text="Need Help?" 
+                                       FontWeight="Bold" 
+                                       Foreground="{StaticResource GFOrangeBrush}" 
+                                       Margin="0,0,0,10"/>
+                            
+                            <TextBlock TextWrapping="Wrap" 
+                                       Margin="0,0,0,10">
+                                If you need assistance with any IT-related issues, please contact:
+                            </TextBlock>
+                            
+                            <StackPanel Margin="10,0,0,0">
+                                
+                                <TextBlock Margin="0,10,0,0">
+                                    <Run FontWeight="SemiBold">Global Service Desk:</Run>
+                                    <Run Text="+1 518-305-4357"/>
+                                </TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    
+                    <!-- Finish button -->
+                    <Button x:Name="FinishButton" 
+                            Content="Finish" 
+                            Click="FinishButton_Click"
+                            Background="{StaticResource GFOrangeBrush}"
+                            Foreground="White"
+                            FontSize="16"
+                            FontWeight="SemiBold"
+                            Padding="30,15"
+                            HorizontalAlignment="Center"
+                            Margin="0,20,0,0"/>
+                </StackPanel>
+            </Grid>
         </ScrollViewer>
     </Grid>
 </UserControl>

@@ -6,50 +6,102 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="White"/>
+        </Grid.Background>
+        
+        <!-- Globe image in background -->
+        <Image Source="/GFSetupWizard.App;component/Resources/Images/New _GF_icons_Globe_purp.png" 
+               Opacity="0.05" 
+               HorizontalAlignment="Right" 
+               VerticalAlignment="Top" 
+               Width="300" 
+               Height="300" 
+               Margin="0,-50,-50,0"/>
+        
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <StackPanel Margin="20">
-                <TextBlock Text="Microsoft Teams Setup" 
-                           FontSize="28" 
-                           FontWeight="Bold" 
-                           Margin="0,0,0,20"/>
+            <Grid Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
                 
-                <TextBlock Text="Configure Microsoft Teams for communication and collaboration" 
-                           FontSize="18" 
-                           FontWeight="SemiBold" 
-                           Foreground="#6264A7"
-                           Margin="0,0,0,20"/>
-                
-                <TextBlock TextWrapping="Wrap" Margin="0,0,0,20">
-                    Microsoft Teams is your primary tool for communication and collaboration at GlobalFoundries.
-                    Setting up Teams properly ensures you can connect with colleagues, participate in meetings, and collaborate on projects.
-                </TextBlock>
-                
-                <Button x:Name="LaunchTeamsButton" 
-                        Content="Launch Teams" 
-                        Click="LaunchTeamsButton_Click"
-                        Background="#6264A7"
-                        Foreground="White"
-                        Padding="15,10"
-                        FontSize="14"
-                        FontWeight="SemiBold"
-                        HorizontalAlignment="Left"
-                        Margin="0,0,0,30"/>
-                
-                <TextBlock Text="Setup Guide:" 
-                           FontWeight="SemiBold" 
-                           Margin="0,10,0,10"/>
-                
-                <StackPanel Margin="20,0,0,0">
-                    <TextBlock Text="1. Enter your username@gfoundries.com if not already listed" Margin="0,5,0,5"/>
-                    <TextBlock Text="2. Click through the prompts with default options" Margin="0,5,0,5"/>
-                    <TextBlock Text="3. Uncheck the option to setup Teams Mobile" Margin="0,5,0,5"/>
+                <!-- Header with colon graphic element -->
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,20">
+                    <TextBlock Text="Teams" 
+                               Style="{StaticResource HeaderTextStyle}"
+                               Margin="0"/>
+                    <Grid Margin="10,0,0,0" VerticalAlignment="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Border Width="12" Height="12" Background="{StaticResource TeamsBrush}" Grid.Row="0" Margin="0,0,0,2"/>
+                        <Border Width="12" Height="12" Background="{StaticResource TeamsBrush}" Grid.Row="1" Margin="0,2,0,0"/>
+                    </Grid>
+                    <TextBlock Text="Setup" 
+                               Style="{StaticResource HeaderTextStyle}"
+                               Margin="10,0,0,0"/>
                 </StackPanel>
                 
-                <TextBlock TextWrapping="Wrap" Margin="0,20,0,20">
-                    Once Teams is set up, you'll be able to chat with colleagues, join video meetings, 
-                    collaborate on documents, and stay connected with your team.
-                </TextBlock>
-            </StackPanel>
+                <StackPanel Grid.Row="1">
+                    <TextBlock Text="Configure Microsoft Teams for communication and collaboration" 
+                               Style="{StaticResource SubHeaderTextStyle}"
+                               Foreground="{StaticResource TeamsBrush}"/>
+                    
+                    <Border Background="{StaticResource GFLightGreyBrush}" 
+                            Padding="15" 
+                            Margin="0,0,0,20"
+                            CornerRadius="4">
+                        <TextBlock Style="{StaticResource BodyTextStyle}" Margin="0">
+                            Microsoft Teams is your primary tool for communication and collaboration at GF.
+                            Setting up Teams properly ensures you can connect with colleagues, participate in meetings, and collaborate on projects.
+                        </TextBlock>
+                    </Border>
+                    
+                    <Button x:Name="LaunchTeamsButton" 
+                            Content="Launch Teams" 
+                            Click="LaunchTeamsButton_Click"
+                            Background="{StaticResource TeamsBrush}"
+                            Foreground="White"
+                            Padding="15,10"
+                            FontSize="14"
+                            FontWeight="SemiBold"
+                            HorizontalAlignment="Left"
+                            Margin="0,0,0,30"/>
+                    
+                    <TextBlock Text="Setup Guide:" 
+                               FontWeight="SemiBold" 
+                               Foreground="{StaticResource TeamsBrush}"
+                               Margin="0,10,0,10"/>
+                    
+                    <!-- Steps with colon graphic elements -->
+                    <Grid Margin="0,10,0,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        
+                        <!-- Step 1 -->
+                        <Border Grid.Row="0" Grid.Column="0" Width="6" Height="20" Background="{StaticResource TeamsBrush}" Margin="0,5,0,5"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="Enter your username@gfoundries.com if not already listed" Margin="10,5,0,5"/>
+                        
+                        <!-- Step 2 -->
+                        <Border Grid.Row="1" Grid.Column="0" Width="6" Height="20" Background="{StaticResource TeamsBrush}" Margin="0,5,0,5"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="Click through the prompts with default options" Margin="10,5,0,5"/>
+                        
+                        <!-- Step 3 -->
+                        <Border Grid.Row="2" Grid.Column="0" Width="6" Height="20" Background="{StaticResource TeamsBrush}" Margin="0,5,0,5"/>
+                        <TextBlock Grid.Row="2" Grid.Column="1" Text="Uncheck the option to setup Teams Mobile" Margin="10,5,0,5"/>
+                    </Grid>
+                    
+                </StackPanel>
+            </Grid>
         </ScrollViewer>
     </Grid>
 </UserControl>

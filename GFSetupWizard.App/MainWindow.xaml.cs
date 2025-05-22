@@ -14,10 +14,10 @@ namespace GFSetupWizard.App
         private readonly StepCompletionManager _completionManager;
         
         // UI elements
-        private Button BackButton;
-        private Button NextButton;
-        private ProgressBar StepProgress;
-        private ContentControl StepContent;
+        private Button _backButton;
+        private Button _nextButton;
+        private ProgressBar _stepProgress;
+        private ContentControl _stepContent;
 
         public MainWindow()
         {
@@ -34,7 +34,7 @@ namespace GFSetupWizard.App
         private void InitializeUIComponents()
         {
             // Set window properties
-            Title = "GlobalFoundries Setup Wizard";
+            Title = "GF Setup Wizard";
             Width = 800;
             Height = 600;
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
@@ -48,34 +48,89 @@ namespace GFSetupWizard.App
             // Create header
             var headerBorder = new Border
             {
-                Background = new System.Windows.Media.SolidColorBrush(
-                    System.Windows.Media.Color.FromRgb(0, 119, 200)), // #0077C8
+                Background = Application.Current.Resources["GFOrangeBrush"] as System.Windows.Media.SolidColorBrush,
                 Margin = new Thickness(20, 10, 20, 10)
             };
             Grid.SetRow(headerBorder, 0);
             
-            var headerPanel = new StackPanel { Orientation = Orientation.Horizontal };
-            var headerText = new TextBlock
+            var headerGrid = new Grid();
+            headerGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+            headerGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+            
+            // GF Logo
+            var logoImage = new Image
             {
-                Text = "GlobalFoundries Setup Wizard",
+                Source = new System.Windows.Media.Imaging.BitmapImage(
+                    new System.Uri("/GFSetupWizard.App;component/Resources/Images/New _GF_icons_Globe_ylw.png", System.UriKind.Relative)),
+                Width = 40,
+                Height = 40,
+                Margin = new Thickness(10, 5, 10, 5)
+            };
+            Grid.SetColumn(logoImage, 0);
+            headerGrid.Children.Add(logoImage);
+            
+            // Title with colon graphic element
+            var titlePanel = new StackPanel { Orientation = Orientation.Horizontal, VerticalAlignment = VerticalAlignment.Center };
+            Grid.SetColumn(titlePanel, 1);
+            
+            var gfText = new TextBlock
+            {
+                Text = "GF",
                 FontSize = 24,
                 FontWeight = FontWeights.Bold,
                 Foreground = System.Windows.Media.Brushes.White
             };
-            headerPanel.Children.Add(headerText);
-            headerBorder.Child = headerPanel;
+            titlePanel.Children.Add(gfText);
+            
+            var colonGrid = new Grid { Margin = new Thickness(10, 0, 0, 0) };
+            colonGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
+            colonGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
+            
+            var topColon = new Border
+            {
+                Width = 10,
+                Height = 10,
+                Background = System.Windows.Media.Brushes.White,
+                Margin = new Thickness(0, 0, 0, 2)
+            };
+            Grid.SetRow(topColon, 0);
+            colonGrid.Children.Add(topColon);
+            
+            var bottomColon = new Border
+            {
+                Width = 10,
+                Height = 10,
+                Background = System.Windows.Media.Brushes.White,
+                Margin = new Thickness(0, 2, 0, 0)
+            };
+            Grid.SetRow(bottomColon, 1);
+            colonGrid.Children.Add(bottomColon);
+            
+            titlePanel.Children.Add(colonGrid);
+            
+            var setupWizardText = new TextBlock
+            {
+                Text = "Setup Wizard",
+                FontSize = 24,
+                FontWeight = FontWeights.Bold,
+                Foreground = System.Windows.Media.Brushes.White,
+                Margin = new Thickness(10, 0, 0, 0)
+            };
+            titlePanel.Children.Add(setupWizardText);
+            
+            headerGrid.Children.Add(titlePanel);
+            headerBorder.Child = headerGrid;
             mainGrid.Children.Add(headerBorder);
             
             // Create content area
-            StepContent = new ContentControl { Margin = new Thickness(20) };
-            Grid.SetRow(StepContent, 1);
-            mainGrid.Children.Add(StepContent);
+            _stepContent = new ContentControl { Margin = new Thickness(20) };
+            Grid.SetRow(_stepContent, 1);
+            mainGrid.Children.Add(_stepContent);
             
             // Create navigation area
             var navGrid = new Grid
             {
-                Background = new System.Windows.Media.SolidColorBrush(
-                    System.Windows.Media.Color.FromRgb(240, 240, 240)), // #F0F0F0
+                Background = Application.Current.Resources["GFLightGreyBrush"] as System.Windows.Media.SolidColorBrush,
                 Margin = new Thickness(20, 10, 20, 10)
             };
             Grid.SetRow(navGrid, 2);
@@ -84,28 +139,38 @@ namespace GFSetupWizard.App
             navGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
             navGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
             
-            StepProgress = new ProgressBar { Height = 20, Margin = new Thickness(0, 0, 20, 0) };
-            Grid.SetColumn(StepProgress, 0);
-            navGrid.Children.Add(StepProgress);
+            _stepProgress = new ProgressBar
+            {
+                Height = 20,
+                Margin = new Thickness(0, 0, 20, 0),
+                Foreground = Application.Current.Resources["GFPurpleBrush"] as System.Windows.Media.SolidColorBrush
+            };
+            Grid.SetColumn(_stepProgress, 0);
+            navGrid.Children.Add(_stepProgress);
             
-            BackButton = new Button
+            _backButton = new Button
             {
                 Content = "Back",
                 Width = 100,
-                Margin = new Thickness(0, 0, 10, 0)
+                Margin = new Thickness(0, 0, 10, 0),
+                Background = System.Windows.Media.Brushes.White,
+                BorderBrush = Application.Current.Resources["GFOrangeBrush"] as System.Windows.Media.SolidColorBrush,
+                Foreground = Application.Current.Resources["GFOrangeBrush"] as System.Windows.Media.SolidColorBrush
             };
-            BackButton.Click += BackButton_Click;
-            Grid.SetColumn(BackButton, 1);
-            navGrid.Children.Add(BackButton);
+            _backButton.Click += BackButton_Click;
+            Grid.SetColumn(_backButton, 1);
+            navGrid.Children.Add(_backButton);
             
-            NextButton = new Button
+            _nextButton = new Button
             {
                 Content = "Next",
-                Width = 100
+                Width = 100,
+                Background = Application.Current.Resources["GFOrangeBrush"] as System.Windows.Media.SolidColorBrush,
+                Foreground = System.Windows.Media.Brushes.White
             };
-            NextButton.Click += NextButton_Click;
-            Grid.SetColumn(NextButton, 2);
-            navGrid.Children.Add(NextButton);
+            _nextButton.Click += NextButton_Click;
+            Grid.SetColumn(_nextButton, 2);
+            navGrid.Children.Add(_nextButton);
             
             mainGrid.Children.Add(navGrid);
             
@@ -205,8 +270,8 @@ namespace GFSetupWizard.App
         private void UpdateUI()
         {
             // Update navigation buttons
-            BackButton.IsEnabled = _navigator.CanMovePrevious;
-            NextButton.Content = _navigator.CanMoveNext ? "Next" : "Finish";
+            _backButton.IsEnabled = _navigator.CanMovePrevious;
+            _nextButton.Content = _navigator.CanMoveNext ? "Next" : "Finish";
             
             // Update progress bar
             // Assuming all steps have equal weight
@@ -220,14 +285,14 @@ namespace GFSetupWizard.App
                 currentStepIndex++;
             }
             
-            StepProgress.Minimum = 0;
-            StepProgress.Maximum = totalSteps;
-            StepProgress.Value = currentStepIndex + 1;
+            _stepProgress.Minimum = 0;
+            _stepProgress.Maximum = totalSteps;
+            _stepProgress.Value = currentStepIndex + 1;
             
             // Update content area with the current step's view
             if (_navigator.CurrentStep != null && _stepViews.TryGetValue(_navigator.CurrentStep, out var view))
             {
-                StepContent.Content = view;
+                _stepContent.Content = view;
             }
         }
     }

@@ -11,12 +11,12 @@
     <FrameworkReference Include="Microsoft.WindowsDesktop.App.WPF" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <EnableDefaultPageItems>false</EnableDefaultPageItems>
+  </PropertyGroup>
+  
   <ItemGroup>
-    <None Remove="MainWindow.xaml" />
-    <Page Remove="MainWindow.xaml" />
-    <ApplicationDefinition Remove="MainWindow.xaml" />
-    <Compile Remove="MainWindow.xaml.cs" />
-    <Compile Include="MainWindow.xaml.cs" />
+    <Page Include="**\*.xaml" Exclude="App.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,6 +35,10 @@
     <Content Include="LaunchEdgeSyncSettings.ps1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Images\*.png" />
   </ItemGroup>
 
   <PropertyGroup>

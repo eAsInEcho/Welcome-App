@@ -25,6 +25,36 @@ namespace GFSetupWizard.App.Views
                 );
             }
         }
+        
+        private void OpenRsaRequestButton_Click(object sender, RoutedEventArgs e)
+        {
+            bool success = SystemApplicationLauncher.OpenRsaTokenRequestForVpn();
+            
+            if (!success)
+            {
+                MessageBox.Show(
+                    "Unable to open the RSA token request page automatically. Please navigate to the Service Portal and search for 'RSA token' manually.",
+                    "Launch Failed",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning
+                );
+            }
+        }
+        
+        private void OpenSoftwareRequestButton_Click(object sender, RoutedEventArgs e)
+        {
+            bool success = SystemApplicationLauncher.OpenSoftwareRequestPortal();
+            
+            if (!success)
+            {
+                MessageBox.Show(
+                    "Unable to open the software request page automatically. Please navigate to the Service Portal and search for 'software request' manually.",
+                    "Launch Failed",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning
+                );
+            }
+        }
 
         private void FinishButton_Click(object sender, RoutedEventArgs e)
         {

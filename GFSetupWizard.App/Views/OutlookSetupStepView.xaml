@@ -6,52 +6,112 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="White"/>
+        </Grid.Background>
+        
+        <!-- Globe image in background -->
+        <Image Source="/GFSetupWizard.App;component/Resources/Images/New _GF_icons_Globe_purp.png" 
+               Opacity="0.05" 
+               HorizontalAlignment="Right" 
+               VerticalAlignment="Top" 
+               Width="300" 
+               Height="300" 
+               Margin="0,-50,-50,0"/>
+        
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <StackPanel Margin="20">
-                <TextBlock Text="Outlook Setup" 
-                           FontSize="28" 
-                           FontWeight="Bold" 
-                           Margin="0,0,0,20"/>
+            <Grid Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
                 
-                <TextBlock Text="Configure Microsoft Outlook for your email and calendar" 
-                           FontSize="18" 
-                           FontWeight="SemiBold" 
-                           Foreground="#0077C8"
-                           Margin="0,0,0,20"/>
-                
-                <TextBlock TextWrapping="Wrap" Margin="0,0,0,20">
-                    Microsoft Outlook is your primary tool for email communication and calendar management at GlobalFoundries.
-                    Setting up Outlook properly ensures you stay connected with your team and manage your schedule effectively.
-                </TextBlock>
-                
-                <Button x:Name="LaunchOutlookButton" 
-                        Content="Launch Outlook" 
-                        Click="LaunchOutlookButton_Click"
-                        Background="#0077C8"
-                        Foreground="White"
-                        Padding="15,10"
-                        FontSize="14"
-                        FontWeight="SemiBold"
-                        HorizontalAlignment="Left"
-                        Margin="0,0,0,30"/>
-                
-                <TextBlock Text="Setup Guide:" 
-                           FontWeight="SemiBold" 
-                           Margin="0,10,0,10"/>
-                
-                <StackPanel Margin="20,0,0,0">
-                    <TextBlock Text="1. Launch Outlook using the button above" Margin="0,5,0,5"/>
-                    <TextBlock Text="2. Enter your GlobalFoundries email address when prompted" Margin="0,5,0,5"/>
-                    <TextBlock Text="3. Sign in with your company credentials" Margin="0,5,0,5"/>
-                    <TextBlock Text="4. Wait for initial synchronization to complete" Margin="0,5,0,5"/>
-                    <TextBlock Text="5. Set up your email signature in Outlook settings" Margin="0,5,0,5"/>
+                <!-- Header with colon graphic element -->
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,20">
+                    <TextBlock Text="Outlook" 
+                               Style="{StaticResource HeaderTextStyle}"
+                               Margin="0"/>
+                    <Grid Margin="10,0,0,0" VerticalAlignment="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Border Width="12" Height="12" Background="{StaticResource OutlookBrush}" Grid.Row="0" Margin="0,0,0,2"/>
+                        <Border Width="12" Height="12" Background="{StaticResource OutlookBrush}" Grid.Row="1" Margin="0,2,0,0"/>
+                    </Grid>
+                    <TextBlock Text="Setup" 
+                               Style="{StaticResource HeaderTextStyle}"
+                               Margin="10,0,0,0"/>
                 </StackPanel>
                 
-                <TextBlock TextWrapping="Wrap" Margin="0,20,0,20">
-                    Once Outlook is set up, you'll have access to your company email, calendar, and contacts.
-                    You can schedule meetings, manage your appointments, and communicate with your colleagues.
-                </TextBlock>
-            </StackPanel>
+                <StackPanel Grid.Row="1">
+                    <TextBlock Text="Configure Microsoft Outlook for your email and calendar" 
+                               Style="{StaticResource SubHeaderTextStyle}"
+                               Foreground="{StaticResource OutlookBrush}"/>
+                    
+                    <Border Background="{StaticResource GFLightGreyBrush}" 
+                            Padding="15" 
+                            Margin="0,0,0,20"
+                            CornerRadius="4">
+                        <TextBlock Style="{StaticResource BodyTextStyle}" Margin="0">
+                            Microsoft Outlook is your primary tool for email communication and calendar management at GF.
+                            Setting up Outlook properly ensures you stay connected with your team and manage your schedule effectively.
+                        </TextBlock>
+                    </Border>
+                    
+                    <Button x:Name="LaunchOutlookButton" 
+                            Content="Launch Outlook" 
+                            Click="LaunchOutlookButton_Click"
+                            Background="{StaticResource OutlookBrush}"
+                            Foreground="White"
+                            Padding="15,10"
+                            FontSize="14"
+                            FontWeight="SemiBold"
+                            HorizontalAlignment="Left"
+                            Margin="0,0,0,30"/>
+                    
+                    <TextBlock Text="Setup Guide:" 
+                               FontWeight="SemiBold" 
+                               Foreground="{StaticResource OutlookBrush}"
+                               Margin="0,10,0,10"/>
+                    
+                    <!-- Steps with colon graphic elements -->
+                    <Grid Margin="0,10,0,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        
+                        <!-- Step 1 -->
+                        <Border Grid.Row="0" Grid.Column="0" Width="6" Height="20" Background="{StaticResource OutlookBrush}" Margin="0,5,0,5"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="Launch Outlook using the button above" Margin="10,5,0,5"/>
+                        
+                        <!-- Step 2 -->
+                        <Border Grid.Row="1" Grid.Column="0" Width="6" Height="20" Background="{StaticResource OutlookBrush}" Margin="0,5,0,5"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="Enter your GF email address when prompted" Margin="10,5,0,5"/>
+                        
+                        <!-- Step 3 -->
+                        <Border Grid.Row="2" Grid.Column="0" Width="6" Height="20" Background="{StaticResource OutlookBrush}" Margin="0,5,0,5"/>
+                        <TextBlock Grid.Row="2" Grid.Column="1" Text="Click through all default options" Margin="10,5,0,5"/>
+                        
+                        <!-- Step 4 -->
+                        <Border Grid.Row="3" Grid.Column="0" Width="6" Height="20" Background="{StaticResource OutlookBrush}" Margin="0,5,0,5"/>
+                        <TextBlock Grid.Row="3" Grid.Column="1" Text="Uncheck option to set up Outlook mobile" Margin="10,5,0,5"/>
+                        
+                        <!-- Step 5 -->
+                        <Border Grid.Row="4" Grid.Column="0" Width="6" Height="20" Background="{StaticResource OutlookBrush}" Margin="0,5,0,5"/>
+                        <TextBlock Grid.Row="4" Grid.Column="1" Text="Set up your email signature in Outlook settings" Margin="10,5,0,5"/>
+                    </Grid>
+                    
+                </StackPanel>
+            </Grid>
         </ScrollViewer>
     </Grid>
 </UserControl>

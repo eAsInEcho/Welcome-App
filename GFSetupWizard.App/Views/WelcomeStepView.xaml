@@ -6,41 +6,108 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="White"/>
+        </Grid.Background>
+        
+        <!-- Globe image in background -->
+        <Image Source="/GFSetupWizard.App;component/Resources/Images/New _GF_icons_Globe_orng.png" 
+               Opacity="0.1" 
+               HorizontalAlignment="Right" 
+               VerticalAlignment="Top" 
+               Width="300" 
+               Height="300" 
+               Margin="0,-50,-50,0"/>
+        
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <StackPanel Margin="20">
-                <TextBlock Text="Welcome to Your New Laptop!" 
-                           FontSize="28" 
-                           FontWeight="Bold" 
-                           Margin="0,0,0,20"/>
+            <Grid Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
                 
-                <TextBlock Text="Guide for New Employees" 
-                           FontSize="18" 
-                           FontWeight="SemiBold" 
-                           Foreground="#0077C8"
-                           Margin="0,0,0,20"/>
-                
-                <TextBlock TextWrapping="Wrap" Margin="0,0,0,20">
-                    This guide helps you quickly and easily set up your new laptop by logging in to Windows, 
-                    activating Microsoft 365 apps, and requesting VPN access.
-                </TextBlock>
-                
-                <TextBlock Text="The wizard will guide you through the following steps:" 
-                           FontWeight="SemiBold" 
-                           Margin="0,10,0,10"/>
-                
-                <StackPanel Margin="20,0,0,0">
-                    <TextBlock Text="• Setting up Microsoft OneDrive" Margin="0,5,0,5"/>
-                    <TextBlock Text="• Configuring Microsoft Outlook" Margin="0,5,0,5"/>
-                    <TextBlock Text="• Setting up Microsoft Teams" Margin="0,5,0,5"/>
-                    <TextBlock Text="• Configuring Microsoft Edge" Margin="0,5,0,5"/>
-                    <TextBlock Text="• Requesting your SecurID RSA Token for VPN" Margin="0,5,0,5"/>
-                    <TextBlock Text="• Installing additional software" Margin="0,5,0,5"/>
+                <!-- Header with colon graphic element -->
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,20">
+                    <TextBlock Text="Welcome" 
+                               Style="{StaticResource HeaderTextStyle}"
+                               Margin="0"/>
+                    <Grid Margin="10,0,0,0" VerticalAlignment="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Border Width="12" Height="12" Background="{StaticResource GFOrangeBrush}" Grid.Row="0" Margin="0,0,0,2"/>
+                        <Border Width="12" Height="12" Background="{StaticResource GFOrangeBrush}" Grid.Row="1" Margin="0,2,0,0"/>
+                    </Grid>
+                    <TextBlock Text="New Employee Setup" 
+                               Style="{StaticResource HeaderTextStyle}"
+                               Margin="10,0,0,0"/>
                 </StackPanel>
                 
-                <TextBlock TextWrapping="Wrap" Margin="0,20,0,0">
-                    Click <Bold>Next</Bold> to begin the setup process.
-                </TextBlock>
-            </StackPanel>
+                <StackPanel Grid.Row="1">
+                    <TextBlock Text="Guide for New Employees" 
+                               Style="{StaticResource SubHeaderTextStyle}"
+                               Foreground="{StaticResource GFOrangeBrush}"/>
+                    
+                    <Border Background="{StaticResource GFYellowBrush}" 
+                            Padding="15" 
+                            Margin="0,0,0,20"
+                            CornerRadius="4">
+                        <TextBlock Style="{StaticResource BodyTextStyle}" Margin="0">
+                            This guide helps you quickly and easily set up your new laptop by logging in to Windows, 
+                            activating Microsoft 365 apps, and requesting VPN access.
+                        </TextBlock>
+                    </Border>
+                    
+                    <TextBlock Text="The wizard will guide you through the following steps:" 
+                               FontWeight="SemiBold" 
+                               Margin="0,10,0,10"/>
+                    
+                    <!-- Steps with colon graphic elements -->
+                    <Grid Margin="0,10,0,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        
+                        <!-- OneDrive -->
+                        <Border Grid.Row="0" Grid.Column="0" Width="6" Height="20" Background="{StaticResource GFOrangeBrush}" Margin="0,5,0,5"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="Setting up Microsoft OneDrive" Margin="10,5,0,5"/>
+                        
+                        <!-- Outlook -->
+                        <Border Grid.Row="1" Grid.Column="0" Width="6" Height="20" Background="{StaticResource GFOrangeBrush}" Margin="0,5,0,5"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="Configuring Microsoft Outlook" Margin="10,5,0,5"/>
+                        
+                        <!-- Teams -->
+                        <Border Grid.Row="2" Grid.Column="0" Width="6" Height="20" Background="{StaticResource GFOrangeBrush}" Margin="0,5,0,5"/>
+                        <TextBlock Grid.Row="2" Grid.Column="1" Text="Setting up Microsoft Teams" Margin="10,5,0,5"/>
+                        
+                        <!-- Edge -->
+                        <Border Grid.Row="3" Grid.Column="0" Width="6" Height="20" Background="{StaticResource GFOrangeBrush}" Margin="0,5,0,5"/>
+                        <TextBlock Grid.Row="3" Grid.Column="1" Text="Configuring Microsoft Edge" Margin="10,5,0,5"/>
+                        
+                        <!-- VPN -->
+                        <Border Grid.Row="4" Grid.Column="0" Width="6" Height="20" Background="{StaticResource GFOrangeBrush}" Margin="0,5,0,5"/>
+                        <TextBlock Grid.Row="4" Grid.Column="1" Text="Requesting your SecurID RSA Token for VPN" Margin="10,5,0,5"/>
+                        
+                        <!-- Software -->
+                        <Border Grid.Row="5" Grid.Column="0" Width="6" Height="20" Background="{StaticResource GFOrangeBrush}" Margin="0,5,0,5"/>
+                        <TextBlock Grid.Row="5" Grid.Column="1" Text="Installing additional software" Margin="10,5,0,5"/>
+                    </Grid>
+                    
+                    <TextBlock TextWrapping="Wrap" Margin="0,20,0,0" FontWeight="SemiBold" Foreground="{StaticResource GFOrangeBrush}">
+                        Click <Bold>Next</Bold> to begin the setup process.
+                    </TextBlock>
+                </StackPanel>
+            </Grid>
         </ScrollViewer>
     </Grid>
 </UserControl>

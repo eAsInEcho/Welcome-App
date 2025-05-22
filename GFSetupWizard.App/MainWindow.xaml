@@ -3,38 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d"
-        Title="GlobalFoundries Setup Wizard" Height="600" Width="800"
-        WindowStartupLocation="CenterScreen">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        
-        <!-- Header with logo and title -->
-        <Border Background="#0077C8" Grid.Row="0" Margin="20,10,20,10">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="GlobalFoundries Setup Wizard" 
-                          FontSize="24" FontWeight="Bold" Foreground="White"/>
-            </StackPanel>
-        </Border>
-        
-        <!-- Content area for setup steps -->
-        <ContentControl Grid.Row="1" x:Name="StepContent" Margin="20"/>
-        
-        <!-- Navigation buttons -->
-        <Grid Grid.Row="2" Background="#F0F0F0" Margin="20,10,20,10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            
-            <ProgressBar x:Name="StepProgress" Height="20" Grid.Column="0" Margin="0,0,20,0"/>
-            <Button x:Name="BackButton" Content="Back" Width="100" Grid.Column="1" Margin="0,0,10,0" Click="BackButton_Click"/>
-            <Button x:Name="NextButton" Content="Next" Width="100" Grid.Column="2" Click="NextButton_Click"/>
-        </Grid>
-    </Grid>
+        mc:Ignorable="d">
+    <!-- UI is created programmatically in code-behind -->
 </Window>
