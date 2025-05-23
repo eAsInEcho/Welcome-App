@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "9bh7YQHDu2M2CsGFzs5rjf5zgvaJtqTb6Gi8xQ9C6h2MozOBGK6OlNLxUOjStQC4NukA5ZguCxA3KzHqd4NhEw==",
+  "dgSpecHash": "2WPqs1a9usCJxv+QrbaP0CNEjmqJiFd8rW8W2ctSDPcDhjCIbVi3NVgu/MiFlP5OrEQb5+YjT1syh3ZrGKKF3A==",
   "success": true,
   "projectFilePath": "C:\\GFApps\\Welcome App\\GFSetupWizard\\GFSetupWizard.App\\GFSetupWizard.App.csproj",
   "expectedPackageFiles": [
@@ -23,8 +23,7 @@
     "C:\\Users\\amaxwell\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\amaxwell\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\7.0.1\\microsoft.netcore.app.runtime.win-x64.7.0.1.nupkg.sha512",
     "C:\\Users\\amaxwell\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\7.0.1\\microsoft.windowsdesktop.app.runtime.win-x64.7.0.1.nupkg.sha512",
-    "C:\\Users\\amaxwell\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\7.0.1\\microsoft.aspnetcore.app.runtime.win-x64.7.0.1.nupkg.sha512",
-    "C:\\Users\\amaxwell\\.nuget\\packages\\microsoft.netcore.app.crossgen2.win-x64\\7.0.1\\microsoft.netcore.app.crossgen2.win-x64.7.0.1.nupkg.sha512"
+    "C:\\Users\\amaxwell\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\7.0.1\\microsoft.aspnetcore.app.runtime.win-x64.7.0.1.nupkg.sha512"
   ],
   "logs": [
     {

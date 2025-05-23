@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "mp2Ha+uPTVvngR9v9P+YOeRrPSVGJ3/PzmrYN/vIrCm7eFTvGUx3y7PpGX18yMVhBKyfzSc3D5tTysK5u3g3bQ==",
+  "dgSpecHash": "i9NfbrlSlVzEp4cm/kcWrgmq6iPO4/qXpjzIIhZOQUTW3IbSA0MIdUDjDDI5TlrwRkQI3i9siy5S3wTyaAkoFQ==",
   "success": true,
   "projectFilePath": "C:\\GFApps\\Welcome App\\GFSetupWizard\\GFSetupWizard.Steps\\GFSetupWizard.Steps.csproj",
   "expectedPackageFiles": [
@@ -18,7 +18,10 @@
     "C:\\Users\\amaxwell\\.nuget\\packages\\system.security.principal.windows\\5.0.0\\system.security.principal.windows.5.0.0.nupkg.sha512",
     "C:\\Users\\amaxwell\\.nuget\\packages\\system.text.encodings.web\\9.0.5\\system.text.encodings.web.9.0.5.nupkg.sha512",
     "C:\\Users\\amaxwell\\.nuget\\packages\\system.text.json\\9.0.5\\system.text.json.9.0.5.nupkg.sha512",
-    "C:\\Users\\amaxwell\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512"
+    "C:\\Users\\amaxwell\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
+    "C:\\Users\\amaxwell\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\7.0.1\\microsoft.netcore.app.runtime.win-x64.7.0.1.nupkg.sha512",
+    "C:\\Users\\amaxwell\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\7.0.1\\microsoft.windowsdesktop.app.runtime.win-x64.7.0.1.nupkg.sha512",
+    "C:\\Users\\amaxwell\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\7.0.1\\microsoft.aspnetcore.app.runtime.win-x64.7.0.1.nupkg.sha512"
   ],
   "logs": [
     {

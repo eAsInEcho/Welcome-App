@@ -1,9 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Shapes;
 using GFSetupWizard.App.Views;
 using GFSetupWizard.Core;
 using GFSetupWizard.Steps;
+using GFSetupWizard.SystemIntegration;
 
 namespace GFSetupWizard.App
 {
@@ -20,11 +25,34 @@ namespace GFSetupWizard.App
 
         public MainWindow()
         {
-            // Initialize UI components manually
-            InitializeUIComponents();
-            
-            InitializeSteps();
-            UpdateUI();
+            try
+            {
+                // Log the start of MainWindow initialization
+                Debug.WriteLine("Starting MainWindow initialization");
+                
+                // Initialize UI components manually with error handling
+                InitializeUIComponents();
+                
+                // Initialize steps and update UI
+                InitializeSteps();
+                UpdateUI();
+                
+                Debug.WriteLine("MainWindow initialization completed successfully");
+            }
+            catch (Exception ex)
+            {
+                // Log the error
+                Debug.WriteLine($"Error in MainWindow constructor: {ex.Message}");
+                File.AppendAllText("app_error_log.txt", 
+                    $"{DateTime.Now}: MainWindow constructor error: {ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}\n\n");
+                
+                // Show a simple error message
+                MessageBox.Show($"Error initializing application: {ex.Message}", "Initialization Error", 
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+                
+                // Re-throw to be caught by the application's global exception handler
+                throw;
+            }
         }
         
         private void InitializeUIComponents()
@@ -44,7 +72,7 @@ namespace GFSetupWizard.App
             // Create header
             var headerBorder = new Border
             {
-                Background = Application.Current.Resources["GFOrangeBrush"] as System.Windows.Media.SolidColorBrush,
+                Background = GetResourceBrushOrDefault("GFOrangeBrush", "#FF6012"),
                 Margin = new Thickness(20, 10, 20, 10)
             };
             Grid.SetRow(headerBorder, 0);
@@ -53,17 +81,16 @@ namespace GFSetupWizard.App
             headerGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
             headerGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
             
-            // GF Logo
-            var logoImage = new Image
+            // GF Logo - Use a simple shape instead of an image to avoid resource loading issues
+            var logoEllipse = new Ellipse
             {
-                Source = new System.Windows.Media.Imaging.BitmapImage(
-                    new System.Uri("/GFSetupWizard.App;component/Resources/Images/New _GF_icons_Globe_ylw.png", System.UriKind.Relative)),
                 Width = 40,
                 Height = 40,
+                Fill = GetResourceBrushOrDefault("GFYellowBrush", "#FFD100"),
                 Margin = new Thickness(10, 5, 10, 5)
             };
-            Grid.SetColumn(logoImage, 0);
-            headerGrid.Children.Add(logoImage);
+            Grid.SetColumn(logoEllipse, 0);
+            headerGrid.Children.Add(logoEllipse);
             
             // Title with colon graphic element
             var titlePanel = new StackPanel { Orientation = Orientation.Horizontal, VerticalAlignment = VerticalAlignment.Center };
@@ -126,7 +153,7 @@ namespace GFSetupWizard.App
             // Create navigation area
             var navGrid = new Grid
             {
-                Background = Application.Current.Resources["GFLightGreyBrush"] as System.Windows.Media.SolidColorBrush,
+                Background = GetResourceBrushOrDefault("GFLightGreyBrush", "#F5F5F5"),
                 Margin = new Thickness(20, 10, 20, 10)
             };
             Grid.SetRow(navGrid, 2);
@@ -134,15 +161,29 @@ namespace GFSetupWizard.App
             navGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
             navGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
             navGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+            navGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
             
             _stepProgress = new ProgressBar
             {
                 Height = 20,
                 Margin = new Thickness(0, 0, 20, 0),
-                Foreground = Application.Current.Resources["GFPurpleBrush"] as System.Windows.Media.SolidColorBrush
+                Foreground = GetResourceBrushOrDefault("GFPurpleBrush", "#43007A")
             };
             Grid.SetColumn(_stepProgress, 0);
             navGrid.Children.Add(_stepProgress);
+            
+            // Add auto-run checkbox
+            var autoRunCheckbox = new CheckBox
+            {
+                Content = "Run at startup",
+                VerticalAlignment = VerticalAlignment.Center,
+                Margin = new Thickness(0, 0, 20, 0),
+                IsChecked = InstallationManager.RegistryKeyExists()
+            };
+            autoRunCheckbox.Checked += AutoRunCheckbox_Checked;
+            autoRunCheckbox.Unchecked += AutoRunCheckbox_Unchecked;
+            Grid.SetColumn(autoRunCheckbox, 1);
+            navGrid.Children.Add(autoRunCheckbox);
             
             _backButton = new Button
             {
@@ -150,22 +191,22 @@ namespace GFSetupWizard.App
                 Width = 100,
                 Margin = new Thickness(0, 0, 10, 0),
                 Background = System.Windows.Media.Brushes.White,
-                BorderBrush = Application.Current.Resources["GFOrangeBrush"] as System.Windows.Media.SolidColorBrush,
-                Foreground = Application.Current.Resources["GFOrangeBrush"] as System.Windows.Media.SolidColorBrush
+                BorderBrush = GetResourceBrushOrDefault("GFOrangeBrush", "#FF6012"),
+                Foreground = GetResourceBrushOrDefault("GFOrangeBrush", "#FF6012")
             };
             _backButton.Click += BackButton_Click;
-            Grid.SetColumn(_backButton, 1);
+            Grid.SetColumn(_backButton, 2);
             navGrid.Children.Add(_backButton);
             
             _nextButton = new Button
             {
                 Content = "Next",
                 Width = 100,
-                Background = Application.Current.Resources["GFOrangeBrush"] as System.Windows.Media.SolidColorBrush,
+                Background = GetResourceBrushOrDefault("GFOrangeBrush", "#FF6012"),
                 Foreground = System.Windows.Media.Brushes.White
             };
             _nextButton.Click += NextButton_Click;
-            Grid.SetColumn(_nextButton, 2);
+            Grid.SetColumn(_nextButton, 3);
             navGrid.Children.Add(_nextButton);
             
             mainGrid.Children.Add(navGrid);
@@ -278,6 +319,56 @@ namespace GFSetupWizard.App
             {
                 _stepContent.Content = view;
             }
+        }
+        
+        /// <summary>
+        /// Event handler for the auto-run checkbox checked event.
+        /// </summary>
+        private void AutoRunCheckbox_Checked(object sender, RoutedEventArgs e)
+        {
+            // Enable auto-run by creating registry key
+            InstallationManager.SetupRegistryEntry();
+        }
+        
+        /// <summary>
+        /// Event handler for the auto-run checkbox unchecked event.
+        /// </summary>
+        private void AutoRunCheckbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            // Disable auto-run by removing registry key
+            InstallationManager.RemoveRegistryEntry();
+        }
+        
+        /// <summary>
+        /// Gets a brush from resources or creates a new one with the default color if not found.
+        /// This helps prevent NullReferenceException when resources aren't loaded yet.
+        /// </summary>
+        /// <param name="resourceKey">The resource key to look for</param>
+        /// <param name="defaultColorHex">The default color hex code to use if resource not found</param>
+        /// <returns>A SolidColorBrush from resources or a new one with the default color</returns>
+        private System.Windows.Media.SolidColorBrush GetResourceBrushOrDefault(string resourceKey, string defaultColorHex)
+        {
+            try
+            {
+                if (Application.Current != null && 
+                    Application.Current.Resources != null && 
+                    Application.Current.Resources.Contains(resourceKey))
+                {
+                    var brush = Application.Current.Resources[resourceKey] as System.Windows.Media.SolidColorBrush;
+                    if (brush != null)
+                    {
+                        return brush;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error accessing resource {resourceKey}: {ex.Message}");
+            }
+            
+            // Create a new brush with the default color
+            return new System.Windows.Media.SolidColorBrush(
+                (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString(defaultColorHex));
         }
     }
 }
