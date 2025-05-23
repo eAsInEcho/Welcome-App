@@ -11,7 +11,7 @@
         </Grid.Background>
         
         <!-- Globe image in background -->
-        <Image Source="/GFSetupWizard.App;component/Resources/Images/New_GF_icons_Globe_purp.png" 
+        <Image Source="/GFSetupWizard;component/Resources/Images/New_GF_icons_Globe_purp.png" 
                Opacity="0.05" 
                HorizontalAlignment="Right" 
                VerticalAlignment="Top" 
@@ -59,6 +59,11 @@
                             Setting up Edge properly ensures your bookmarks, passwords, and preferences are synced across all your devices.
                         </TextBlock>
                     </Border>
+                    
+                    <TextBlock TextWrapping="Wrap" Margin="0,0,0,20" FontStyle="Italic">
+                        Note: The "Launch Edge" button will automatically navigate to the sync settings page after three seconds. Wait for launch and return here when done.
+                        If that doesn't work, use the "Copy Sync Settings URL" button to copy the URL, then paste it into Edge's address bar.
+                    </TextBlock>
                 
                     <!-- Button Stack Panel -->
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,30">
@@ -83,11 +88,6 @@
                                 FontWeight="SemiBold"
                                 HorizontalAlignment="Left"/>
                     </StackPanel>
-                
-                    <TextBlock TextWrapping="Wrap" Margin="0,0,0,20" FontStyle="Italic">
-                        Note: The "Launch Edge" button will automatically navigate to the sync settings page after three seconds. Wait for launch and return here when done.
-                        If that doesn't work, use the "Copy Sync Settings URL" button to copy the URL, then paste it into Edge's address bar.
-                    </TextBlock>
                     
                     <Border Background="{StaticResource GFYellowBrush}" 
                             BorderThickness="0" 

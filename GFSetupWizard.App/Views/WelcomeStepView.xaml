@@ -11,7 +11,7 @@
         </Grid.Background>
         
         <!-- Globe image in background -->
-        <Image Source="/GFSetupWizard.App;component/Resources/Images/New_GF_icons_Globe_orng.png" 
+        <Image Source="/GFSetupWizard;component/Resources/Images/New_GF_icons_Globe_orng.png" 
                Opacity="0.1" 
                HorizontalAlignment="Right" 
                VerticalAlignment="Top" 

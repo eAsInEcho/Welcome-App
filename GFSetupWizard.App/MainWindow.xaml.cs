@@ -81,7 +81,8 @@ namespace GFSetupWizard.App
             headerGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
             headerGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
             
-            // GF Logo - Use a simple shape instead of an image to avoid resource loading issues
+            // GF Logo - Use a simple yellow ellipse shape for now
+            // The ellipse is a fallback while the image loading is being resolved
             var logoEllipse = new Ellipse
             {
                 Width = 40,
