@@ -435,8 +435,14 @@ namespace GFSetupWizard.SystemIntegration
                 // Create a new InputSimulator instance
                 var simulator = new InputSimulator();
                 
-                // Wait for Edge to initialize (adjust timing as needed)
-                Task.Delay(2000).Wait();
+                // Wait longer for Edge to initialize (3 seconds instead of 2)
+                Task.Delay(3000).Wait();
+                
+                // Press Ctrl+L to focus the address bar
+                simulator.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_L);
+                
+                // Small delay after focusing
+                Task.Delay(200).Wait();
                 
                 // Type the sync settings URL and press Enter
                 simulator.Keyboard.TextEntry("edge://settings/profiles/sync");

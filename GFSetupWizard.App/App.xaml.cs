@@ -15,6 +15,34 @@ namespace GFSetupWizard.App
         {
             try
             {
+                // Check if this is the first time the app has been run
+                if (!InstallationManager.HasAppRunBefore())
+                {
+                    // If it's the first run, set up auto-launch registry entry
+                    Debug.WriteLine("First run detected, setting up auto-launch registry entry");
+                    InstallationManager.SetupRegistryEntry();
+                    
+                    try
+                    {
+                        string logDirectory = @"C:\GFApps";
+                        string logPath = Path.Combine(logDirectory, "app_log.txt");
+                        
+                        if (!Directory.Exists(logDirectory))
+                        {
+                            Directory.CreateDirectory(logDirectory);
+                        }
+                        
+                        File.AppendAllText(logPath, $"{DateTime.Now}: First run detected, auto-launch registry entry created\n");
+                    }
+                    catch
+                    {
+                        // Continue even if logging fails
+                    }
+                }
+                
+                // Mark the app as having been run
+                InstallationManager.SetAppHasRun();
+                
                 // Initialize font system explicitly to avoid issues in single-file deployment
                 InitializeFontSystem();
                 
@@ -35,8 +63,24 @@ namespace GFSetupWizard.App
 
                 base.OnStartup(e);
                 
-                // Log startup attempt
-                File.AppendAllText("app_log.txt", $"{DateTime.Now}: Application startup initiated\n");
+                // Log startup attempt in a user-accessible location
+                try
+                {
+                    string logDirectory = @"C:\GFApps";
+                    string logPath = Path.Combine(logDirectory, "app_log.txt");
+                    
+                    if (!Directory.Exists(logDirectory))
+                    {
+                        Directory.CreateDirectory(logDirectory);
+                    }
+                    
+                    File.AppendAllText(logPath, $"{DateTime.Now}: Application startup initiated\n");
+                }
+                catch
+                {
+                    // Continue even if logging fails
+                    Debug.WriteLine("Unable to write to app_log.txt, but continuing startup");
+                }
                 
                 // Create and show the main window with detailed error handling
                 try
@@ -48,7 +92,23 @@ namespace GFSetupWizard.App
                     mainWindow.Show();
                     
                     // Log successful window creation
-                    File.AppendAllText("app_log.txt", $"{DateTime.Now}: MainWindow created and shown successfully\n");
+                    try
+                    {
+                        string logDirectory = @"C:\GFApps";
+                        string logPath = Path.Combine(logDirectory, "app_log.txt");
+                        
+                        if (!Directory.Exists(logDirectory))
+                        {
+                            Directory.CreateDirectory(logDirectory);
+                        }
+                        
+                        File.AppendAllText(logPath, $"{DateTime.Now}: MainWindow created and shown successfully\n");
+                    }
+                    catch
+                    {
+                        // Continue even if logging fails
+                        Debug.WriteLine("Unable to write success log, but window was created successfully");
+                    }
                 }
                 catch (Exception windowEx)
                 {
@@ -70,14 +130,34 @@ namespace GFSetupWizard.App
         {
             try
             {
+                // Use C:\GFApps directory for logs since it's guaranteed to be user-accessible
+                string logDirectory = @"C:\GFApps";
+                string logPath = Path.Combine(logDirectory, "app_error_log.txt");
+                
                 string logMessage = $"{DateTime.Now}: {source} - {ex?.GetType().Name}: {ex?.Message}\n{ex?.StackTrace}\n\n";
-                File.AppendAllText("app_error_log.txt", logMessage);
+                
+                // Ensure the directory exists
+                try
+                {
+                    if (!Directory.Exists(logDirectory))
+                    {
+                        Directory.CreateDirectory(logDirectory);
+                    }
+                    
+                    File.AppendAllText(logPath, logMessage);
+                }
+                catch
+                {
+                    // Silently continue if file operations fail
+                    // The important thing is the app starts successfully
+                }
+                
                 Debug.WriteLine($"Exception logged: {source} - {ex?.GetType().Name}: {ex?.Message}");
             }
-            catch (Exception logEx)
+            catch
             {
-                Debug.WriteLine($"Failed to log exception: {logEx.Message}");
-                // If logging fails, we can't do much about it
+                // Suppress all exceptions in the logging method
+                // We don't want logging failures to affect the application
             }
         }
         
@@ -90,7 +170,22 @@ namespace GFSetupWizard.App
             {
                 // Log the start of font initialization
                 Debug.WriteLine("Starting font system initialization");
-                File.AppendAllText("app_log.txt", $"{DateTime.Now}: Starting font system initialization\n");
+                try
+                {
+                    string logDirectory = @"C:\GFApps";
+                    string logPath = Path.Combine(logDirectory, "app_log.txt");
+                    
+                    if (!Directory.Exists(logDirectory))
+                    {
+                        Directory.CreateDirectory(logDirectory);
+                    }
+                    
+                    File.AppendAllText(logPath, $"{DateTime.Now}: Starting font system initialization\n");
+                }
+                catch
+                {
+                    // Continue even if logging fails
+                }
                 
                 // Ensure the PresentationCore assembly is loaded
                 var presentationCoreAssembly = typeof(System.Windows.Media.FontFamily).Assembly;
@@ -113,7 +208,22 @@ namespace GFSetupWizard.App
                 catch (Exception ex)
                 {
                     Debug.WriteLine($"Approach 1 failed: {ex.Message}");
-                    File.AppendAllText("app_error_log.txt", $"{DateTime.Now}: Font init approach 1 failed: {ex.Message}\n{ex.StackTrace}\n\n");
+                    try
+                    {
+                        string logDirectory = @"C:\GFApps";
+                        string logPath = Path.Combine(logDirectory, "app_error_log.txt");
+                        
+                        if (!Directory.Exists(logDirectory))
+                        {
+                            Directory.CreateDirectory(logDirectory);
+                        }
+                        
+                        File.AppendAllText(logPath, $"{DateTime.Now}: Font init approach 1 failed: {ex.Message}\n{ex.StackTrace}\n\n");
+                    }
+                    catch
+                    {
+                        // Continue even if logging fails
+                    }
                 }
                 
                 // Approach 2: Try with system generic font families
@@ -140,7 +250,22 @@ namespace GFSetupWizard.App
                 catch (Exception ex)
                 {
                     Debug.WriteLine($"Approach 2 failed: {ex.Message}");
-                    File.AppendAllText("app_error_log.txt", $"{DateTime.Now}: Font init approach 2 failed: {ex.Message}\n{ex.StackTrace}\n\n");
+                    try
+                    {
+                        string logDirectory = @"C:\GFApps";
+                        string logPath = Path.Combine(logDirectory, "app_error_log.txt");
+                        
+                        if (!Directory.Exists(logDirectory))
+                        {
+                            Directory.CreateDirectory(logDirectory);
+                        }
+                        
+                        File.AppendAllText(logPath, $"{DateTime.Now}: Font init approach 2 failed: {ex.Message}\n{ex.StackTrace}\n\n");
+                    }
+                    catch
+                    {
+                        // Continue even if logging fails
+                    }
                 }
                 
                 // Approach 3: Create and measure a Button (which uses different font rendering path)
@@ -155,7 +280,22 @@ namespace GFSetupWizard.App
                 catch (Exception ex)
                 {
                     Debug.WriteLine($"Approach 3 failed: {ex.Message}");
-                    File.AppendAllText("app_error_log.txt", $"{DateTime.Now}: Font init approach 3 failed: {ex.Message}\n{ex.StackTrace}\n\n");
+                    try
+                    {
+                        string logDirectory = @"C:\GFApps";
+                        string logPath = Path.Combine(logDirectory, "app_error_log.txt");
+                        
+                        if (!Directory.Exists(logDirectory))
+                        {
+                            Directory.CreateDirectory(logDirectory);
+                        }
+                        
+                        File.AppendAllText(logPath, $"{DateTime.Now}: Font init approach 3 failed: {ex.Message}\n{ex.StackTrace}\n\n");
+                    }
+                    catch
+                    {
+                        // Continue even if logging fails
+                    }
                 }
                 
                 // Approach 4: Try to access system fonts directly
@@ -173,18 +313,62 @@ namespace GFSetupWizard.App
                 catch (Exception ex)
                 {
                     Debug.WriteLine($"Approach 4 failed: {ex.Message}");
-                    File.AppendAllText("app_error_log.txt", $"{DateTime.Now}: Font init approach 4 failed: {ex.Message}\n{ex.StackTrace}\n\n");
+                    try
+                    {
+                        string logDirectory = @"C:\GFApps";
+                        string logPath = Path.Combine(logDirectory, "app_error_log.txt");
+                        
+                        if (!Directory.Exists(logDirectory))
+                        {
+                            Directory.CreateDirectory(logDirectory);
+                        }
+                        
+                        File.AppendAllText(logPath, $"{DateTime.Now}: Font init approach 4 failed: {ex.Message}\n{ex.StackTrace}\n\n");
+                    }
+                    catch
+                    {
+                        // Continue even if logging fails
+                    }
                 }
                 
                 Debug.WriteLine("Font system initialization completed");
-                File.AppendAllText("app_log.txt", $"{DateTime.Now}: Font system initialization completed\n");
+                try
+                {
+                    string logDirectory = @"C:\GFApps";
+                    string logPath = Path.Combine(logDirectory, "app_log.txt");
+                    
+                    if (!Directory.Exists(logDirectory))
+                    {
+                        Directory.CreateDirectory(logDirectory);
+                    }
+                    
+                    File.AppendAllText(logPath, $"{DateTime.Now}: Font system initialization completed\n");
+                }
+                catch
+                {
+                    // Continue even if logging fails
+                }
             }
             catch (Exception ex)
             {
                 Debug.WriteLine($"Font initialization error: {ex.Message}");
                 // Log the error with full details
-                File.AppendAllText("app_error_log.txt", 
-                    $"{DateTime.Now}: Font initialization error: {ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}\n\n");
+                try
+                {
+                    string logDirectory = @"C:\GFApps";
+                    string logPath = Path.Combine(logDirectory, "app_error_log.txt");
+                    
+                    if (!Directory.Exists(logDirectory))
+                    {
+                        Directory.CreateDirectory(logDirectory);
+                    }
+                    
+                    File.AppendAllText(logPath, $"{DateTime.Now}: Font initialization error: {ex.GetType().FullName}: {ex.Message}\n{ex.StackTrace}\n\n");
+                }
+                catch
+                {
+                    // Continue even if logging fails
+                }
                 
                 // Continue even if font initialization fails
                 // The application might still work with default fonts

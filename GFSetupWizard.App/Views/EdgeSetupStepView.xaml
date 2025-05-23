@@ -11,7 +11,7 @@
         </Grid.Background>
         
         <!-- Globe image in background -->
-        <Image Source="/GFSetupWizard.App;component/Resources/Images/New _GF_icons_Globe_purp.png" 
+        <Image Source="/GFSetupWizard.App;component/Resources/Images/New_GF_icons_Globe_purp.png" 
                Opacity="0.05" 
                HorizontalAlignment="Right" 
                VerticalAlignment="Top" 
@@ -85,7 +85,7 @@
                     </StackPanel>
                 
                     <TextBlock TextWrapping="Wrap" Margin="0,0,0,20" FontStyle="Italic">
-                        Note: The "Launch Edge" button will open Edge and automatically navigate to the sync settings page after about one second.
+                        Note: The "Launch Edge" button will automatically navigate to the sync settings page after three seconds. Wait for launch and return here when done.
                         If that doesn't work, use the "Copy Sync Settings URL" button to copy the URL, then paste it into Edge's address bar.
                     </TextBlock>
                     

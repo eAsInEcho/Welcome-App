@@ -7,10 +7,10 @@ namespace GFSetupWizard.App.Views
 {
     public partial class EdgeSetupStepView : UserControl
     {
-    public EdgeSetupStepView()
-    {
-        InitializeComponent();
-    }
+        public EdgeSetupStepView()
+        {
+            InitializeComponent();
+        }
 
         private void LaunchEdgeButton_Click(object sender, RoutedEventArgs e)
         {
@@ -25,16 +25,7 @@ namespace GFSetupWizard.App.Views
                     MessageBoxImage.Warning
                 );
             }
-            else
-            {
-                MessageBox.Show(
-                    "Edge has been launched and should navigate to the sync settings page. " +
-                    "Make sure you sign in with your GlobalFoundries work account and enable sync.",
-                    "Edge Launched",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Information
-                );
-            }
+            // Success message removed to prevent interruption of auto-typing
         }
         
         private void CheckStatusButton_Click(object sender, RoutedEventArgs e)
@@ -61,6 +52,5 @@ namespace GFSetupWizard.App.Views
                 );
             }
         }
-        
     }
 }

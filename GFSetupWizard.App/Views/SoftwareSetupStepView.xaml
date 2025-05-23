@@ -11,7 +11,7 @@
         </Grid.Background>
         
         <!-- World Map image in background -->
-        <Image Source="/GFSetupWizard.App;component/Resources/Images/New _GF_icons_Globe_purp.png" 
+        <Image Source="/GFSetupWizard.App;component/Resources/Images/New_GF_icons_Globe_purp.png" 
                Opacity="0.05" 
                HorizontalAlignment="Right" 
                VerticalAlignment="Top" 

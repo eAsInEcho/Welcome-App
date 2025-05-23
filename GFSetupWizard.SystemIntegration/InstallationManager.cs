@@ -6,6 +6,61 @@ namespace GFSetupWizard.SystemIntegration
 {
     public static class InstallationManager
     {
+        private const string AppRegistryKeyPath = @"SOFTWARE\GFSetupWizard";
+        private const string FirstRunValueName = "HasRun";
+        
+        /// <summary>
+        /// Checks if the application has been run before.
+        /// </summary>
+        /// <returns>True if the app has been run before, false otherwise.</returns>
+        public static bool HasAppRunBefore()
+        {
+            try
+            {
+                using (var key = Registry.CurrentUser.OpenSubKey(AppRegistryKeyPath))
+                {
+                    if (key != null)
+                    {
+                        object? value = key.GetValue(FirstRunValueName);
+                        return value != null;
+                    }
+                }
+                
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error checking app run history: {ex.Message}");
+                return false;
+            }
+        }
+        
+        /// <summary>
+        /// Sets the registry key indicating the app has been run.
+        /// </summary>
+        /// <returns>True if registry entry was created successfully, false otherwise.</returns>
+        public static bool SetAppHasRun()
+        {
+            try
+            {
+                using (var key = Registry.CurrentUser.CreateSubKey(AppRegistryKeyPath))
+                {
+                    if (key != null)
+                    {
+                        key.SetValue(FirstRunValueName, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                        return true;
+                    }
+                }
+                
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error setting app run history: {ex.Message}");
+                return false;
+            }
+        }
+        
         /// <summary>
         /// Checks if the registry key for startup is properly set.
         /// </summary>

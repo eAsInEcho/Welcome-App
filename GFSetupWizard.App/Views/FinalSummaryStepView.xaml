@@ -58,12 +58,12 @@
                                        Margin="0,10,0,0"/>
                         </StackPanel>
                         
-                        <!-- Globe image as celebratory element -->
-                        <Image Grid.Column="1" 
-                               Source="/GFSetupWizard.App;component/Resources/Images/New _GF_icons_Globe_ylw.png" 
-                               Width="80" 
-                               Height="80" 
-                               Margin="10,0,0,0"/>
+        <!-- Globe image as celebratory element -->
+        <Image Grid.Column="1" 
+               Source="/GFSetupWizard.App;component/Resources/Images/New_GF_icons_Globe_ylw.png" 
+               Width="80" 
+               Height="80" 
+               Margin="10,0,0,0"/>
                     </Grid>
                 </Border>
                 
